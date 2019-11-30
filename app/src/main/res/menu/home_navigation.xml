@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item2"
+        android:icon="@drawable/home_icon"
+        android:title="Home"
+        android:checkable="true"
+        />
+    <item
+        android:id="@+id/item3"
+        android:icon="@drawable/friend_icon"
+        android:title="Friends"
+        android:checkable="true"
+        />
+
+    <item
+        android:id="@+id/item4"
+        android:icon="@drawable/notification_icon"
+        android:title="Notification"
+        android:checkable="true"
+        />
+</menu>
