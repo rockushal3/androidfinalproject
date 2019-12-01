@@ -38,7 +38,7 @@
             android:id="@+id/login_email"
             android:layout_width="327dp"
             android:layout_height="75dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="52dp"
             android:backgroundTint="#2699FB"
             android:ems="10"
             android:hint="Email"
@@ -55,7 +55,6 @@
             android:id="@+id/login_password"
             android:layout_width="327dp"
             android:layout_height="75dp"
-            android:layout_marginStart="44dp"
             android:layout_marginTop="24dp"
             android:backgroundTint="#2699FB"
             android:ems="10"
@@ -65,6 +64,7 @@
             android:textColorHighlight="#2699FB"
             android:textColorHint="#2699FB"
             android:textColorLink="#2699FB"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_email" />
 
@@ -72,12 +72,12 @@
             android:id="@+id/btn_login"
             android:layout_width="322dp"
             android:layout_height="40dp"
-            android:layout_marginStart="48dp"
             android:layout_marginTop="40dp"
             android:background="#1E88E5"
             android:text="LOG IN"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_password" />
 
@@ -89,16 +89,17 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="236dp"
             android:layout_marginTop="73dp"
             android:text="Sign up"
             android:textColor="#1E88E5"
             android:textSize="14dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.749"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_login"
+            app:layout_constraintVertical_bias="1.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

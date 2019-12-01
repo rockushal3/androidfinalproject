@@ -17,10 +17,21 @@
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
         android:layout_margin="4dp"
-        android:textSize="16dp"
+        android:textSize="20dp"
+        />
+    <Button
+        android:id="@+id/btn_search"
+        android:layout_marginRight="35dp"
+        android:layout_marginTop="3dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/search_icon"
+        android:backgroundTint="@color/colorAccent"
+        android:layout_alignParentRight="true"
         />
 <Button
     android:id="@+id/btn_menu"
+    android:layout_marginTop="3dp"
     android:layout_marginRight="5dp"
     android:layout_width="30dp"
     android:layout_height="30dp"

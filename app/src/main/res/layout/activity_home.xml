@@ -26,6 +26,18 @@
             app:itemTextColor="@color/navigation_selector_color"
             android:id="@+id/homeNavigation"
             />
+        <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            xmlns:android="http://schemas.android.com/apk/res/android">
+        <fragment
+            android:id="@+id/fragment"
+            android:name="com.example.journey_mate.fragment.Home_Fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        </ScrollView>
+
     </LinearLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
@@ -34,6 +46,9 @@
         android:layout_gravity="end"
         app:headerLayout="@layout/drawable_header"
         app:menu="@menu/drawable_menu"
+        app:itemIconTint="@color/navigation_selector_color"
+        app:itemTextColor="@color/white"
+        android:background="@color/colorAccent"
         >
     </com.google.android.material.navigation.NavigationView>
 

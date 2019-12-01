@@ -1,30 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item
-    android:id="@+id/item1"
-    android:title="Item 1"
+    android:id="@+id/home_nav"
+    android:icon="@drawable/home_icon"
+    android:title="Home"
     android:checkable="true"
     />
 
     <item
         android:id="@+id/item2"
-        android:title="Item 2"
+        android:icon="@drawable/friend_icon"
+        android:title="Friends"
         android:checkable="true"
         />
     <item
-        android:id="@+id/item3"
-        android:title="Item 3"
+        android:id="@+id/profile_nav"
+        android:icon="@drawable/profile_icon"
+        android:title="Profile"
         android:checkable="true"
         />
-
+<group>
     <item
         android:id="@+id/item4"
-        android:title="Item 4"
+        android:icon="@drawable/public_icon"
+        android:title="About"
         android:checkable="true"
         />
     <item
         android:id="@+id/item5"
-        android:title="Item 5"
+        android:icon="@drawable/setting_icon"
+        android:title="Setting"
         android:checkable="true"
         />
+    <item
+        android:id="@+id/item6"
+        android:icon="@drawable/friend_icon"
+        android:title="Log out"
+        android:checkable="true"
+        />
+</group>
 </menu>
