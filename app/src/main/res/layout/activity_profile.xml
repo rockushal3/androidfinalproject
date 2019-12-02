@@ -60,7 +60,7 @@
             android:id="@+id/buttons_layout"
             android:orientation="horizontal"
             android:layout_marginRight="30dp"
-            android:layout_marginLeft="50dp"
+            android:layout_marginLeft="55dp"
             >
             <Button
                 android:layout_width="30dp"

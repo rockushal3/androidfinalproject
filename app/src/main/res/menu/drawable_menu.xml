@@ -33,7 +33,7 @@
         android:checkable="true"
         />
     <item
-        android:id="@+id/item6"
+        android:id="@+id/logout_nav"
         android:icon="@drawable/friend_icon"
         android:title="Log out"
         android:checkable="true"

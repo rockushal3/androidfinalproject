@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.Switch;
 import android.widget.Toast;
 //note this import
+import com.example.journey_mate.fragment.Friend_Fragment;
+import com.example.journey_mate.fragment.Friend_Request_Fragment;
 import com.example.journey_mate.fragment.Home_Fragment;
+import com.example.journey_mate.fragment.NotificationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -30,11 +33,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     ActionBarDrawerToggle drawerToggle ;
     BottomNavigationView home_navigation;
     Home_Fragment home_fragment;
-    Fragment fragment;
+    Friend_Fragment friend_fragment;
+    Friend_Request_Fragment friend_request_fragment;
+    NotificationFragment notificationFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_home);
 
         //change id to Your id
@@ -49,6 +56,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         drawerLayout.setDrawerListener(drawerToggle);
         // Top Navigation View
         home_navigation = findViewById(R.id.homeNavigation);
+        home_fragment = new Home_Fragment();
+        setFragment(home_fragment);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,24 +65,30 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
         });
 
-        home_fragment = new Home_Fragment();
-        setFragment(home_fragment);
+
         home_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.nav_home:
+
                         setFragment(home_fragment);
                         Toast.makeText(Home.this, "home", Toast.LENGTH_SHORT).show();
                     break;
 
                     case R.id.nav_friend:
+                        friend_fragment = new Friend_Fragment();
+                        setFragment(friend_fragment);
                         Toast.makeText(Home.this, "friend", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_addfriend:
-                        Toast.makeText(Home.this, "addfriend", Toast.LENGTH_SHORT).show();
+                        friend_request_fragment = new Friend_Request_Fragment();
+                        setFragment(friend_request_fragment);
+                        Toast.makeText(Home.this, "Friend Request", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.nav_notification:
+                        notificationFragment = new NotificationFragment();
+                        setFragment(notificationFragment);
                         Toast.makeText(Home.this, "notification", Toast.LENGTH_SHORT).show();
                         break;
 
@@ -83,17 +98,26 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         });
     }
 
+
+
+
+
+
+    // drawer Navigation
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        String itemName = (String)item.getTitle();
         Intent intent;
         switch (item.getItemId()) {
             case R.id.profile_nav:
-                intent = new Intent(Home.this,profile.class);
+                intent = new Intent(this,profile.class);
                 startActivity(intent);
                 break;
             case R.id.home_nav:
-                intent = new Intent(Home.this,Home.class);
+                intent = new Intent(this,Home.class);
+                startActivity(intent);
+                break;
+            case R.id.logout_nav:
+                intent = new Intent(this,Login.class);
                 startActivity(intent);
                 break;
         }

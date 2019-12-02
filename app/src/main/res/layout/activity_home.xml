@@ -31,9 +31,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             xmlns:android="http://schemas.android.com/apk/res/android">
-        <fragment
+        <FrameLayout
             android:id="@+id/fragment"
-            android:name="com.example.journey_mate.fragment.Home_Fragment"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
         </ScrollView>
