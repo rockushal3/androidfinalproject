@@ -4,8 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android" >
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/profile_image"
-        android:layout_width="85dp"
-        android:layout_height="85dp"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/menu_username"
         android:text="Kushal Shrestha"
-        android:textSize="20dp"
+        android:textSize="16dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/black"
         android:layout_toRightOf="@id/profile_image"
@@ -25,7 +25,7 @@
     <Button
         android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_toRightOf="@id/profile_image"
         android:layout_below="@id/menu_username"
         android:background="@color/colorAccent"
@@ -36,7 +36,7 @@
         />
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:layout_toRightOf="@id/confirm_button"
         android:layout_below="@id/menu_username"
         android:layout_marginTop="10dp"

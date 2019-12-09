@@ -1,4 +1,4 @@
-package com.example.journey_mate.fragment;
+package com.example.journey_mate.controller.fragment;
 
 
 import android.os.Bundle;
@@ -14,10 +14,10 @@ import com.example.journey_mate.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Friend_Fragment extends Fragment {
+public class NotificationFragment extends Fragment {
 
 
-    public Friend_Fragment() {
+    public NotificationFragment() {
         // Required empty public constructor
     }
 
@@ -26,7 +26,7 @@ public class Friend_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_friend_, container, false);
+        return inflater.inflate(R.layout.fragment_notification, container, false);
     }
 
 }

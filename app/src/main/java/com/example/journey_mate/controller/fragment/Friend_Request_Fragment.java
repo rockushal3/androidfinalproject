@@ -1,4 +1,4 @@
-package com.example.journey_mate.fragment;
+package com.example.journey_mate.controller.fragment;
 
 
 import android.os.Bundle;

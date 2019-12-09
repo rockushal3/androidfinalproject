@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".Home">
+    tools:context=".controller.Home">
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -53,56 +53,64 @@
                 android:textSize="20dp"
                 />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/profile_name"
-            android:id="@+id/buttons_layout"
-            android:orientation="horizontal"
-            android:layout_marginRight="30dp"
-            android:layout_marginLeft="55dp"
-            >
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:rowCount="1"
+                android:columnCount="3"
+                android:layout_below="@id/profile_name"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:id="@+id/button_layout">
             <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/addfriend_icon"
-                android:backgroundTint="@color/colorAccent"
-                android:layout_marginRight="45dp"
+                android:layout_width="wrap_content"
+                android:drawableTint="@color/colorAccent"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_columnWeight="1"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/addfriend_icon"
+                android:id="@+id/btn_addtrip"
+
+                android:text="Add trip"
                 />
 
             <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/profile_icon"
-                android:backgroundTint="@color/colorAccent"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/colorAccent"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:drawableTop="@drawable/profile_icon"
+                android:text="Edit Profile"
+                android:layout_columnWeight="1"
+                android:id="@+id/btn_edit_profile"
                 />
             <Button
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/friend_icon"
-                android:backgroundTint="@color/colorAccent"
-                android:layout_marginLeft="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTint="@color/colorAccent"
+                android:layout_columnWeight="1"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:text="Friends"
+                android:drawableTop="@drawable/friend_icon"
 
                 />
-        </LinearLayout>
+            </GridLayout>
         <GridLayout
             android:columnCount="2"
             android:rowCount="5"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="14dp"
-            android:layout_below="@+id/buttons_layout"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:layout_below="@+id/button_layout"
+            android:layout_marginLeft="20dp"
             android:id="@+id/profile_detail"
             >
             <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/location_icon"
-            android:backgroundTint="@color/colorAccent"
+            android:backgroundTint="#333333"
                 android:layout_marginBottom="10dp"
                 />
             <TextView
@@ -119,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/phone_icon"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/colorAccent"/>
+                android:backgroundTint="#333333"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -134,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/profile_icon"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/colorAccent"/>
+                android:backgroundTint="#333333"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -149,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/calender_icon"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/colorAccent"/>
+                android:backgroundTint="#333333"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -164,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/email_icon"
                 android:layout_marginBottom="10dp"
-                android:backgroundTint="@color/colorAccent"/>
+                android:backgroundTint="#333333"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -187,7 +195,7 @@
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".fragment.Home_Fragment">
+            tools:context=".controller.fragment.Home_Fragment">
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="33dp"
                 android:layout_height="33dp"

@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:text="Journey Mate"
-        android:textColor="#2699FB"
+        android:textColor="@color/colorAccent"
         android:textSize="25dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,14 +27,17 @@
         android:layout_width="327dp"
         android:layout_height="75dp"
         android:layout_marginTop="40dp"
-        android:backgroundTint="#2699FB"
+        android:backgroundTint="@color/colorAccent"
+        android:drawableLeft="@drawable/profile_icon"
+        android:drawablePadding="20dp"
+        android:drawableTint="@color/colorAccent"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
-        android:textColor="#2699FB"
-        android:textColorHighlight="#2699FB"
-        android:textColorHint="#2699FB"
-        android:textColorLink="#2699FB"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -47,15 +50,17 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
-        android:backgroundTint="#2699FB"
-        android:textColor="#2699FB"
-        android:textColorHighlight="#2699FB"
-        android:textColorHint="#2699FB"
-        android:textColorLink="#2699FB"
+        android:drawableLeft="@drawable/profile_icon"
+        android:drawablePadding="20dp"
+        android:drawableTint="@color/colorAccent"
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_name" />
-
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/sign_psw"
         android:layout_width="327dp"
@@ -63,12 +68,15 @@
         android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Password"
-        android:backgroundTint="#2699FB"
+        android:backgroundTint="@color/colorAccent"
+        android:drawableLeft="@drawable/profile_icon"
+        android:drawablePadding="20dp"
+        android:drawableTint="@color/colorAccent"
         android:inputType="textPassword"
-        android:textColor="#2699FB"
-        android:textColorHighlight="#2699FB"
-        android:textColorHint="#2699FB"
-        android:textColorLink="#2699FB"
+        android:textColor="@color/colorAccent"
+        android:textColorHighlight="@color/colorAccent"
+        android:textColorHint="@color/colorAccent"
+        android:textColorLink="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_email" />
@@ -78,25 +86,16 @@
         android:layout_width="322dp"
         android:layout_height="40dp"
         android:layout_marginTop="44dp"
-        android:background="#1E88E5"
+        android:background="@color/colorAccent"
         android:text="SIGN UP"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.528"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_psw" />
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="123dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="28dp"
 
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
     <TextView
         android:id="@+id/textView2"
@@ -104,11 +103,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:text="Already have an account?"
-        android:textColor="#2699FB"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.349"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
 
     <Button
         android:id="@+id/btn_log"
@@ -118,15 +117,14 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
         android:text="Login"
         android:textColor="#1E88E5"
-        android:textSize="14dp"
+        android:textSize="13dp"
         android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.701"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
