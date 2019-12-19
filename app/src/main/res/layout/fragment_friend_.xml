@@ -8,6 +8,7 @@
         android:queryHint="Search Friend"
         android:id="@+id/search_friend"
         android:layout_marginLeft="20dp"
+        android:iconifiedByDefault="false"
         android:layout_marginRight="20dp"
         />
     <de.hdodenhof.circleimageview.CircleImageView

@@ -14,9 +14,15 @@
         android:checkable="true"
         />
     <item
-        android:id="@+id/profile_nav"
-        android:icon="@drawable/profile_icon"
-        android:title="Profile"
+    android:id="@+id/profile_nav"
+    android:icon="@drawable/profile_icon"
+    android:title="Profile"
+    android:checkable="true"
+    />
+    <item
+        android:id="@+id/trip"
+        android:icon="@drawable/travel"
+        android:title="My Trip"
         android:checkable="true"
         />
 <group>

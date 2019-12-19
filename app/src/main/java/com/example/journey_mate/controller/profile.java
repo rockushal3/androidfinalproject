@@ -73,6 +73,10 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
                 intent = new Intent(this,Login.class);
                 startActivity(intent);
                 break;
+            case R.id.trip:
+                intent = new Intent(this,MyTrip.class);
+                startActivity(intent);
+                break;
         }
         CloseDrawer();
         return true;
@@ -86,10 +90,5 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         drawerLayout.openDrawer(GravityCompat.END);
     }
 
-    public void setFragment(Fragment fragment){
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment, fragment);
-        fragmentTransaction.commit();
-    }
 
 }
