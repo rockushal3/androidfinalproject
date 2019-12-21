@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".controller.MyTrip"></activity>
+        <activity android:name=".controller.About"></activity>
+        <activity android:name=".controller.MyTrip" />
         <activity android:name=".controller.profile" />
         <activity android:name=".controller.Home" />
         <activity android:name=".controller.Login">

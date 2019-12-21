@@ -44,7 +44,7 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
         });
 
         //hover item selected in navigation drawer
-        MenuItem item = navigationView.getMenu().findItem(R.id.profile_nav);
+        MenuItem item = navigationView.getMenu().findItem(R.id.trip);
         item.setCheckable(true);
         item.setChecked(true);
     }
@@ -63,6 +63,15 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
                 break;
             case R.id.logout_nav:
                 intent = new Intent(this,Login.class);
+                startActivity(intent);
+                break;
+            case R.id.trip:
+                intent = new Intent(this,MyTrip.class);
+                startActivity(intent);
+                break;
+
+            case R.id.about:
+                intent = new Intent(this,About.class);
                 startActivity(intent);
                 break;
         }

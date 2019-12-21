@@ -127,6 +127,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 intent = new Intent(this,Login.class);
                 startActivity(intent);
                 break;
+            case R.id.trip:
+                intent = new Intent(this,MyTrip.class);
+                startActivity(intent);
+                break;
+
+            case R.id.about:
+                intent = new Intent(this,About.class);
+                startActivity(intent);
+                break;
         }
         CloseDrawer();
         return true;

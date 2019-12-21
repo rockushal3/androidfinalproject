@@ -1,14 +1,11 @@
 package com.example.journey_mate.controller;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,19 +14,17 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.journey_mate.R;
-import com.example.journey_mate.adaptor.PostAdaptor;
 import com.google.android.material.navigation.NavigationView;
 
-public class profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class About extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+
     DrawerLayout drawerLayout;
     Button menu;
     ActionBarDrawerToggle drawerToggle ;
-    private RecyclerView postview;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+        setContentView(R.layout.activity_about);
 
         //change id to Your id
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -50,27 +45,13 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         });
 
         //hover item selected in navigation drawer
-        MenuItem item = navigationView.getMenu().findItem(R.id.profile_nav);
+        MenuItem item = navigationView.getMenu().findItem(R.id.about);
         item.setCheckable(true);
         item.setChecked(true);
-
-
-        //Post Adaptor data code
-        postview = findViewById(R.id.post_list_profile);
-        PostAdaptor adapter = new PostAdaptor();
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        postview.setLayoutManager(layoutManager);
-        postview.setAdapter(adapter);
-
-
     }
 
-
-
-
-    // drawer Navigation
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Intent intent;
         switch (item.getItemId()) {
             case R.id.profile_nav:
@@ -106,6 +87,4 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
     private void openDrawer() {
         drawerLayout.openDrawer(GravityCompat.END);
     }
-
-
 }

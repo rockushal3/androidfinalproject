@@ -27,7 +27,7 @@
         />
 <group>
     <item
-        android:id="@+id/item4"
+        android:id="@+id/about"
         android:icon="@drawable/public_icon"
         android:title="About"
         android:checkable="true"
