@@ -14,12 +14,15 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.journey_mate.R;
+import com.example.journey_mate.controller.fragment.addTrip;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 public class MyTrip extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
     Button menu;
     ActionBarDrawerToggle drawerToggle ;
+    FloatingActionButton addtrip;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +50,17 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
         MenuItem item = navigationView.getMenu().findItem(R.id.trip);
         item.setCheckable(true);
         item.setChecked(true);
+
+
+        //floating Button
+        addtrip = findViewById(R.id.add_trip);
+        addtrip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addTrip dialog_pop_up = new addTrip();
+                dialog_pop_up.show(getSupportFragmentManager(), "123");
+            }
+        });
     }
 
     @Override

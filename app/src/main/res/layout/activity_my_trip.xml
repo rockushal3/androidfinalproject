@@ -22,7 +22,15 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             />
-
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_plus_sign"
+        android:id="@+id/add_trip"
+        />
     </RelativeLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navView"
