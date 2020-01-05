@@ -19,6 +19,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
         android:src="@drawable/profile"
+        android:transitionName="profileImage"
         android:layout_below="@+id/search_friend"
         />
     <TextView
@@ -26,6 +27,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/menu_username"
         android:text="Kushal Shrestha"
+        android:transitionName="profileName"
         android:textSize="16dp"
         android:layout_marginLeft="20dp"
         android:textColor="@color/black"

@@ -20,7 +20,7 @@ public class Home_Fragment extends Fragment {
         // Inflate the layout for this fragment
         View root =inflater.inflate(R.layout.fragment_home_, container, false);
         postview = root.findViewById(R.id.postlist);
-        PostAdaptor adapter = new PostAdaptor();
+        PostAdaptor adapter = new PostAdaptor(getContext());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         postview.setLayoutManager(layoutManager);
         postview.setAdapter(adapter);
