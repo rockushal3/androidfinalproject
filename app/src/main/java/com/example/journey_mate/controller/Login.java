@@ -43,28 +43,28 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         switch (view.getId()){
             case R.id.btn_login:
 
+                intent = new Intent(Login.this,Home.class);
+                startActivity(intent);
 
-                Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://localhost:3000/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-                UserApi user_interface = retrofit.create(UserApi.class);
-                User user = new User(logemail.getText().toString(),logpassword.getText().toString());
-                Call<User> userlogin = user_interface.userLogin(user);
-                userlogin.enqueue(new Callback<User>() {
-                    @Override
-                    public void onResponse(Call<User> call, Response<User> response) {
-                        Toast.makeText(Login.this, "kushal", Toast.LENGTH_SHORT).show();
-                        Intent intent ;
-                        intent = new Intent(Login.this,Home.class);
-                        startActivity(intent);
-                    }
-
-                    @Override
-                    public void onFailure(Call<User> call, Throwable t) {
-
-                    }
-                });
+//                Retrofit retrofit = new Retrofit.Builder()
+//                        .baseUrl("http://192.168.100.70:3000/")
+//                        .addConverterFactory(GsonConverterFactory.create())
+//                        .build();
+//                UserApi user_interface = retrofit.create(UserApi.class);
+//                User user = new User(logemail.getText().toString(),logpassword.getText().toString());
+//                Call<User> userlogin = user_interface.userLogin(user);
+//                userlogin.enqueue(new Callback<User>() {
+//                    @Override
+//                    public void onResponse(Call<User> call, Response<User> response) {
+//                        Toast.makeText(Login.this, "kushal", Toast.LENGTH_SHORT).show();
+//
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<User> call, Throwable t) {
+//
+//                    }
+//                });
 
 
                 break;
