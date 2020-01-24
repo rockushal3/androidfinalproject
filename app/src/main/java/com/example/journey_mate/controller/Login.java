@@ -18,10 +18,11 @@ import com.example.journey_mate.R;
 import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.model.User;
 
+
 public class Login extends AppCompatActivity implements View.OnClickListener {
     EditText logemail,logpassword;
     Button login,signup;
-
+    UserApi userApi = new UserApi();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         login.setOnClickListener(this);
         signup.setOnClickListener(this);
-
+        if(userApi.checkLoginStatus()){
+            Intent intent = new Intent(Login.this,Home.class);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -42,30 +46,16 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
         Intent intent ;
         switch (view.getId()){
             case R.id.btn_login:
+                User user = new User(logemail.getText().toString(),logpassword.getText().toString());
 
-                intent = new Intent(Login.this,Home.class);
-                startActivity(intent);
-
-//                Retrofit retrofit = new Retrofit.Builder()
-//                        .baseUrl("http://192.168.100.70:3000/")
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//                UserApi user_interface = retrofit.create(UserApi.class);
-//                User user = new User(logemail.getText().toString(),logpassword.getText().toString());
-//                Call<User> userlogin = user_interface.userLogin(user);
-//                userlogin.enqueue(new Callback<User>() {
-//                    @Override
-//                    public void onResponse(Call<User> call, Response<User> response) {
-//                        Toast.makeText(Login.this, "kushal", Toast.LENGTH_SHORT).show();
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<User> call, Throwable t) {
-//
-//                    }
-//                });
-
+                if(userApi.userLogin(user)){
+                    intent = new Intent(Login.this,Home.class);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(Login.this,
+                            "wrong id or password", Toast.LENGTH_SHORT).show();
+                }
 
                 break;
             case R.id.btn_signup:
