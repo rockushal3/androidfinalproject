@@ -8,8 +8,6 @@
     <include
         android:id="@+id/toolbar"
         layout="@layout/registrationtoolbar"
-
-
         />
     <LinearLayout
         android:id="@+id/layoutForWelcome"

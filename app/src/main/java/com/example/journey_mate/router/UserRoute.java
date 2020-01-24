@@ -1,4 +1,4 @@
-package com.example.journey_mate.api;
+package com.example.journey_mate.router;
 
 import com.example.journey_mate.model.User;
 

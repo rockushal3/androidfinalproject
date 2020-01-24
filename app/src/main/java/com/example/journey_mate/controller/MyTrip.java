@@ -12,9 +12,16 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.journey_mate.R;
+import com.example.journey_mate.api.Retro;
+import com.example.journey_mate.api.TripApi;
+import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.controller.fragment.addTrip;
+import com.example.journey_mate.model.Trip;
+import com.example.journey_mate.router.UserRoute;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -23,12 +30,13 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
     Button menu;
     ActionBarDrawerToggle drawerToggle ;
     FloatingActionButton addtrip;
+
+    TripApi tripApi = new TripApi();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_trip);
 
-        //change id to Your id
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -46,10 +54,13 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
             }
         });
 
+
+
         //hover item selected in navigation drawer
         MenuItem item = navigationView.getMenu().findItem(R.id.trip);
         item.setCheckable(true);
         item.setChecked(true);
+
 
 
         //floating Button
@@ -99,4 +110,6 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
     private void openDrawer() {
         drawerLayout.openDrawer(GravityCompat.END);
     }
+
+
 }

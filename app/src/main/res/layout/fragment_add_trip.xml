@@ -17,20 +17,23 @@
         android:textColor="@color/colorAccent"
         />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
+        android:id="@+id/trip_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="Trip Name"
         />
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
+        android:id="@+id/trip_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Location"
+        android:hint="Description"
         />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <EditText
+        android:id="@+id/trip_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -38,6 +41,7 @@
         />
 
     <Button
+        android:id="@+id/btn_addtotrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
