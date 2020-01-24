@@ -34,7 +34,6 @@ public class UserApi {
             Response<Void> registerResponse = userCall.execute();
             if(registerResponse.isSuccessful()){
                 userregister = true;
-                Retro.token += registerResponse.body().getToken();
             }
         } catch (IOException e) {
             System.out.println(e);

@@ -1,18 +1,33 @@
 package com.example.journey_mate.model;
 
 public class User {
+    String _id, name, address, phone, gender, dob, email, password, token;
 
-    private String _id, name,password,token;
-
-    public User(String _id, String name, String password,String token) {
+    public User(String _id, String name, String address, String phone, String gender, String dob, String email, String password,String token) {
         this._id = _id;
         this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.gender = gender;
+        this.dob = dob;
+        this.email = email;
         this.password = password;
         this.token = token;
     }
 
-    public User(String name, String password) {
+    public User( String name, String address, String phone, String gender, String dob, String email, String password,String token) {
         this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.gender = gender;
+        this.dob = dob;
+        this.email = email;
+        this.password = password;
+        this.token = token;
+    }
+
+    public User(String email, String password) {
+        this.email = email;
         this.password = password;
     }
 
@@ -22,6 +37,26 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {

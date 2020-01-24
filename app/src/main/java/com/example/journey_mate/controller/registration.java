@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.journey_mate.R;
+import com.example.journey_mate.api.UserApi;
+import com.example.journey_mate.model.User;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.Calendar;
@@ -178,7 +180,18 @@ public class registration extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.btnTakeSignup:
-
+                User usr = new User(uname,"" ,uphone,ugender,udob,uemail,upassword,"");
+                UserApi userApi = new UserApi();
+                if(userApi.userRegistration(usr)){
+                    intent = new Intent(registration.this,Login.class);
+                    startActivity(intent);
+                    Toast.makeText(registration.this,
+                            "User Register", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(registration.this,
+                            "wrong id or password", Toast.LENGTH_SHORT).show();
+                }
 
                 break;
             case R.id.btn_back:
