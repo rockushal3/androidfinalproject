@@ -8,12 +8,12 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public class UserApi {
-    UserRoute fb = Retro.getInstance()
+    UserRoute userRoute = Retro.getInstance()
             .create(UserRoute.class);
-    boolean isloggedIn,isAlreadyLogin = false;
+    boolean isloggedIn,isAlreadyLogin,userregister = false;
 
     public boolean userLogin(User apiUser){
-        Call<User> userCall = fb.userLogin(apiUser);
+        Call<User> userCall = userRoute.userLogin(apiUser);
         Strict.StrictMode();
         try {
             Response<User> loginResponse = userCall.execute();
@@ -27,8 +27,23 @@ public class UserApi {
         return isloggedIn;
     }
 
+    public boolean userRegistration(User apiUser){
+        Call<Void> userCall = userRoute.userRegister(apiUser);
+        Strict.StrictMode();
+        try {
+            Response<Void> registerResponse = userCall.execute();
+            if(registerResponse.isSuccessful()){
+                userregister = true;
+                Retro.token += registerResponse.body().getToken();
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return userregister;
+    }
+
     public boolean checkLoginStatus(){
-        Call<Void> userCall = fb.checkLogin(Retro.token);
+        Call<Void> userCall = userRoute.checkLogin(Retro.token);
         Strict.StrictMode();
         try {
             Response<Void> loginResponse = userCall.execute();

@@ -12,6 +12,9 @@ public interface UserRoute {
     @POST("login")
     Call<User> userLogin(@Body User user);
 
+    @POST("login")
+    Call<User> userRegister(@Body User user);
+
     @GET("checkLogin")
     Call<Void> checkLogin(@Header("Authorization") String auth);
 

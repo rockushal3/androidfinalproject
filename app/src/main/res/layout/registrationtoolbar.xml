@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:titleTextColor="@color/colorAccent"
+    android:background="@color/white"
+    android:layout_alignParentTop="true"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_marginTop="3dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_arrow_back_black_24dp"
+            android:backgroundTint="@color/colorAccent"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            />
+        <TextView
+            android:id="@+id/tool_title"
+            android:layout_toRightOf="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Account"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:layout_margin="4dp"
+            android:textSize="20dp"
+            />
+
+    </RelativeLayout>
+
+</androidx.appcompat.widget.Toolbar>
