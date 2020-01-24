@@ -1,9 +1,9 @@
 package com.example.journey_mate.model;
 
 public class User {
-    String _id, name, address, phone, gender, dob, email, password, token;
+    String _id, name, address, phone, gender, dob, email, password, token,coverimage,image;
 
-    public User(String _id, String name, String address, String phone, String gender, String dob, String email, String password,String token) {
+    public User(String _id, String name, String address, String phone, String gender, String dob, String email, String password,String token,String coverimage,String image) {
         this._id = _id;
         this.name = name;
         this.address = address;
@@ -13,9 +13,11 @@ public class User {
         this.email = email;
         this.password = password;
         this.token = token;
+        this.coverimage=coverimage;
+        this.image=image;
     }
 
-    public User( String name, String address, String phone, String gender, String dob, String email, String password,String token) {
+    public User( String name, String address, String phone, String gender, String dob, String email, String password,String token,String coverimage,String image) {
         this.name = name;
         this.address = address;
         this.phone = phone;
@@ -24,6 +26,8 @@ public class User {
         this.email = email;
         this.password = password;
         this.token = token;
+        this.coverimage=coverimage;
+        this.image=image;
     }
 
     public User(String email, String password) {

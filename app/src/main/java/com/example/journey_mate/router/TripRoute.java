@@ -14,7 +14,4 @@ public interface TripRoute {
     @POST("createTrip")
     Call<Void> addTrip(@Header("Authorization") String auth,@Body Trip trip);
 
-    @GET("checkLogin")
-    Call<Void> checkLogin(@Header("Authorization") String auth);
-
 }

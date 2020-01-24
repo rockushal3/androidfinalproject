@@ -180,7 +180,7 @@ public class registration extends AppCompatActivity implements View.OnClickListe
                 }
                 break;
             case R.id.btnTakeSignup:
-                User usr = new User(uname,"" ,uphone,ugender,udob,uemail,upassword,"");
+                User usr = new User(uname,"" ,uphone,ugender,udob,uemail,upassword,"","","");
                 UserApi userApi = new UserApi();
                 if(userApi.userRegistration(usr)){
                     intent = new Intent(registration.this,Login.class);

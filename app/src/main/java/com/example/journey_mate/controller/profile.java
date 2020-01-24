@@ -15,9 +15,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.journey_mate.R;
 import com.example.journey_mate.adaptor.PostAdaptor;
+import com.example.journey_mate.api.UserApi;
+import com.example.journey_mate.model.User;
 import com.google.android.material.navigation.NavigationView;
 
 public class profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -25,6 +28,8 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
     Button menu;
     ActionBarDrawerToggle drawerToggle ;
     private RecyclerView postview;
+
+    TextView profilename,userdob,useraddress,userphone,usergender,useremail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +66,21 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         postview.setLayoutManager(layoutManager);
         postview.setAdapter(adapter);
+
+        //profile detail
+        useraddress= findViewById(R.id.useradderss);
+        userdob= findViewById(R.id.userdob);
+        useremail= findViewById(R.id.useremail);
+        userphone= findViewById(R.id.userphone);
+        usergender= findViewById(R.id.usergender);
+        profilename= findViewById(R.id.profile_name);
+
+        useraddress.setText("From "+UserApi.loginUserDetail.getAddress());
+        usergender.setText(UserApi.loginUserDetail.getGender());
+        userphone.setText("Mobile No. +977 " + UserApi.loginUserDetail.getPhone());
+        useremail.setText(UserApi.loginUserDetail.getEmail());
+        userdob.setText("Birthday "+UserApi.loginUserDetail.getDob());
+        profilename.setText(UserApi.loginUserDetail.getName());
 
 
     }
