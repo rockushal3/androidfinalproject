@@ -35,6 +35,8 @@ public class registration extends AppCompatActivity implements View.OnClickListe
     DatePicker dob;
     RadioGroup gender;
     String udob,uname,ugender,uphone,uemail,upassword;
+    UserApi userApi = new UserApi();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -158,6 +160,10 @@ public class registration extends AppCompatActivity implements View.OnClickListe
                 if (TextUtils.isEmpty(eemail)) {
                     email.setError("Enter Your Email");
                 }
+                else if(userApi.checkemail(eemail )){
+                    email.setError("Email Already Exist");
+
+                }
                 else {
                     getLayoutForEmail.setVisibility(View.GONE);
                     getLayoutForPassword.setVisibility(View.VISIBLE);
@@ -165,6 +171,7 @@ public class registration extends AppCompatActivity implements View.OnClickListe
                     uemail = email.getText().toString();
 
                 }
+                ;
                 break;
             case R.id.btnTakePassword:
                 String epassword = password.getText().toString();
@@ -181,7 +188,6 @@ public class registration extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btnTakeSignup:
                 User usr = new User(uname,"" ,uphone,ugender,udob,uemail,upassword,"","","");
-                UserApi userApi = new UserApi();
                 if(userApi.userRegistration(usr)){
                     intent = new Intent(registration.this,Login.class);
                     startActivity(intent);

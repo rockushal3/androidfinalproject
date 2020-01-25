@@ -34,7 +34,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
+         setContentView(R.layout.activity_profile);
 
         //change id to Your id
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -58,7 +58,6 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         MenuItem item = navigationView.getMenu().findItem(R.id.profile_nav);
         item.setCheckable(true);
         item.setChecked(true);
-
 
         //Post Adaptor data code
         postview = findViewById(R.id.post_list_profile);
