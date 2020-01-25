@@ -10,8 +10,8 @@ import retrofit2.Response;
 public class UserApi {
     UserRoute userRoute = Retro.getInstance()
             .create(UserRoute.class);
-    boolean isloggedIn,isAlreadyLogin,userregister,checkemailreg = false;
-    public static User loginUserDetail,checkemailuser=null;
+    boolean isloggedIn,isAlreadyLogin,userregister,checkemailreg,checkprofile = false;
+    public static User loginUserDetail=null;
     public boolean userLogin(User apiUser){
         Call<User> userCall = userRoute.userLogin(apiUser);
         Strict.StrictMode();
@@ -21,6 +21,7 @@ public class UserApi {
                 isloggedIn = true;
                 Retro.token += loginResponse.body().getToken();
                 loginUserDetail = loginResponse.body();
+                System.out.println(loginUserDetail.get_id()+"sd  " + loginUserDetail.getAddress() + "sda");
             }
         } catch (IOException e) {
             System.out.println(e);
@@ -75,6 +76,21 @@ public class UserApi {
         return checkemailreg;
     }
 
+    public User getuserbyid(String id){
+        Call<User> userCall = userRoute.finduserbyid(id);
+        User userdetail = null;
+        Strict.StrictMode();
+        try {
+            Response<User> checkresponse = userCall.execute();
+            if(checkresponse.isSuccessful()){
+                userdetail = checkresponse.body();
+            }
+        
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return userdetail;
+    }
     public boolean updateProfile(User user){
         Call<Void> userCall = userRoute.updateProfile(loginUserDetail.get_id(),user);
         Strict.StrictMode();
@@ -82,14 +98,16 @@ public class UserApi {
             Response<Void> checkresponse = userCall.execute();
             System.out.println(checkresponse.isSuccessful());
             if(checkresponse.isSuccessful()){
-                checkemailreg=true;
+                checkprofile=true;
+                loginUserDetail = getuserbyid(loginUserDetail.get_id());
+                System.out.println(loginUserDetail.get_id());
             }
             else {
-                checkemailreg=false;
+                checkprofile=false;
             }
         } catch (IOException e) {
             System.out.println(e);
         }
-        return checkemailreg;
+        return checkprofile;
     }
 }

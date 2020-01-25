@@ -8,6 +8,7 @@
     tools:context=".controller.updateProfile">
     <include
         layout="@layout/registrationtoolbar"
+        android:id="@+id/toolbar1"
         />
     <ScrollView
         android:layout_width="match_parent"

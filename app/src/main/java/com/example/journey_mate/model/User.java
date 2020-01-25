@@ -17,7 +17,16 @@ public class User {
         this.image=image;
     }
 
-    public User( String name, String address, String phone, String gender, String dob, String email, String password,String token,String coverimage,String image) {
+    public User(String name, String address, String phone, String gender, String dob, String email) {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.gender = gender;
+        this.dob = dob;
+        this.email = email;
+    }
+
+    public User(String name, String address, String phone, String gender, String dob, String email, String password, String token, String coverimage, String image) {
         this.name = name;
         this.address = address;
         this.phone = phone;

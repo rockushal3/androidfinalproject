@@ -23,9 +23,10 @@ public interface UserRoute {
     @GET("getuserbyemail/{email}")
     Call<User> checkEmail(@Path("email") String email);
 
-    @PUT("updateUser/{_id}")
-    Call<Void> updateProfile(@Path("_id") String _id,
+    @PUT("updateUser/{id}")
+    Call<Void> updateProfile(@Path("id") String id,
                               @Body User user);
-
+    @GET("findUserById/{id}")
+    Call<User> finduserbyid(@Path("id") String id);
 
 }

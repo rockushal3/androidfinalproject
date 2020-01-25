@@ -23,9 +23,9 @@ import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.model.User;
 import com.google.android.material.navigation.NavigationView;
 
-public class profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
     DrawerLayout drawerLayout;
-    Button menu;
+    Button menu,btn_edit_profile;
     ActionBarDrawerToggle drawerToggle ;
     private RecyclerView postview;
 
@@ -66,6 +66,10 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         postview.setLayoutManager(layoutManager);
         postview.setAdapter(adapter);
 
+        //edit profile
+        btn_edit_profile = findViewById(R.id.btn_edit_profile);
+        btn_edit_profile.setOnClickListener(this);
+
         //profile detail
         useraddress= findViewById(R.id.useradderss);
         userdob= findViewById(R.id.userdob);
@@ -73,6 +77,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         userphone= findViewById(R.id.userphone);
         usergender= findViewById(R.id.usergender);
         profilename= findViewById(R.id.profile_name);
+
 
         useraddress.setText("From "+UserApi.loginUserDetail.getAddress());
         usergender.setText(UserApi.loginUserDetail.getGender());
@@ -127,4 +132,14 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
     }
 
 
+    @Override
+    public void onClick(View view) {
+        Intent intent;
+        switch (view.getId()){
+            case R.id.btn_edit_profile:
+                intent = new Intent(profile.this,updateProfile.class);
+                startActivity(intent);
+                break;
+        }
+    }
 }

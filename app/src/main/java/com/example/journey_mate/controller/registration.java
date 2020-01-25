@@ -1,6 +1,7 @@
 package com.example.journey_mate.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import retrofit2.Retrofit;
 
 import android.content.Intent;
@@ -42,6 +43,9 @@ public class registration extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+        //change id to Your id
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
 
         Button btnStart = findViewById(R.id.startsignup);
         Button btnTakeName = findViewById(R.id.btnTakeName);

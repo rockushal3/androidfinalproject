@@ -6,7 +6,7 @@
     android:background="#fff"
     >
     <include
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar1"
         layout="@layout/registrationtoolbar"
         />
     <LinearLayout
