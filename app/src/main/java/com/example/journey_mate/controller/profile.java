@@ -15,17 +15,21 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.journey_mate.R;
 import com.example.journey_mate.adaptor.PostAdaptor;
 import com.example.journey_mate.api.UserApi;
+import com.example.journey_mate.controller.fragment.addTrip;
+import com.example.journey_mate.controller.fragment.profile_image;
 import com.example.journey_mate.model.User;
 import com.google.android.material.navigation.NavigationView;
 
 public class profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
     DrawerLayout drawerLayout;
     Button menu,btn_edit_profile;
+    ImageButton updateprofileimage,updatecover;
     ActionBarDrawerToggle drawerToggle ;
     private RecyclerView postview;
 
@@ -86,6 +90,12 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         userdob.setText("Birthday "+UserApi.loginUserDetail.getDob());
         profilename.setText(UserApi.loginUserDetail.getName());
 
+        //Image update
+        updateprofileimage = findViewById(R.id.btn_profile_pic);
+        updatecover = findViewById(R.id.update_cover);
+
+        updateprofileimage.setOnClickListener(this);
+
 
     }
 
@@ -140,6 +150,9 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
                 intent = new Intent(profile.this,updateProfile.class);
                 startActivity(intent);
                 break;
+            case R.id.btn_profile_pic:
+               profile_image profile_image = new profile_image();
+                profile_image.show(getSupportFragmentManager(), "123");
         }
     }
 }
