@@ -22,6 +22,7 @@ import com.example.journey_mate.R;
 import com.example.journey_mate.adaptor.PostAdaptor;
 import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.controller.fragment.addTrip;
+import com.example.journey_mate.controller.fragment.cover_pic;
 import com.example.journey_mate.controller.fragment.profile_image;
 import com.example.journey_mate.model.User;
 import com.google.android.material.navigation.NavigationView;
@@ -95,6 +96,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         updatecover = findViewById(R.id.update_cover);
 
         updateprofileimage.setOnClickListener(this);
+        updatecover.setOnClickListener(this);
 
 
     }
@@ -153,6 +155,10 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
             case R.id.btn_profile_pic:
                profile_image profile_image = new profile_image();
                 profile_image.show(getSupportFragmentManager(), "123");
+            case R.id.update_cover:
+                cover_pic cover_pic = new cover_pic();
+                cover_pic.show(getSupportFragmentManager(), "123");
+
         }
     }
 }
