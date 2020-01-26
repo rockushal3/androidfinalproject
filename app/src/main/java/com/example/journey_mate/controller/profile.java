@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,22 +17,27 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.journey_mate.R;
 import com.example.journey_mate.adaptor.PostAdaptor;
+import com.example.journey_mate.api.Retro;
 import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.controller.fragment.addTrip;
 import com.example.journey_mate.controller.fragment.cover_pic;
 import com.example.journey_mate.controller.fragment.profile_image;
 import com.example.journey_mate.model.User;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 public class profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
     DrawerLayout drawerLayout;
     Button menu,btn_edit_profile;
     ImageButton updateprofileimage,updatecover;
     ActionBarDrawerToggle drawerToggle ;
+    CircleImageView profilepic1;
+    ImageView coverimage;
     private RecyclerView postview;
 
     TextView profilename,userdob,useraddress,userphone,usergender,useremail;
@@ -82,6 +88,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         userphone= findViewById(R.id.userphone);
         usergender= findViewById(R.id.usergender);
         profilename= findViewById(R.id.profile_name);
+        coverimage=findViewById(R.id.coverpic);
 
 
         useraddress.setText("From "+UserApi.loginUserDetail.getAddress());
@@ -90,6 +97,10 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         useremail.setText(UserApi.loginUserDetail.getEmail());
         userdob.setText("Birthday "+UserApi.loginUserDetail.getDob());
         profilename.setText(UserApi.loginUserDetail.getName());
+
+            Picasso.with(this).load(Retro.IMG_URL + UserApi.loginUserDetail.getCoverimage()).into(coverimage);
+            System.out.println(Retro.IMG_URL + UserApi.loginUserDetail.getCoverimage());
+
 
         //Image update
         updateprofileimage = findViewById(R.id.btn_profile_pic);

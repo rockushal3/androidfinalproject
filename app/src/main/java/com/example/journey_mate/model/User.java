@@ -64,6 +64,14 @@ public class User {
         return gender;
     }
 
+    public String getCoverimage() {
+        return coverimage;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
     public String getDob() {
         return dob;
     }

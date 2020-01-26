@@ -4,13 +4,15 @@ import com.example.journey_mate.model.User;
 import com.example.journey_mate.router.UserRoute;
 
 import java.io.IOException;
+
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
 public class UserApi {
     UserRoute userRoute = Retro.getInstance()
             .create(UserRoute.class);
-    boolean isloggedIn,isAlreadyLogin,userregister,checkemailreg,checkprofile = false;
+    boolean isloggedIn,isAlreadyLogin,userregister,checkemailreg,checkprofile,updatecoverimage = false;
     public static User loginUserDetail=null;
     public boolean userLogin(User apiUser){
         Call<User> userCall = userRoute.userLogin(apiUser);
@@ -62,12 +64,8 @@ public class UserApi {
         Strict.StrictMode();
         try {
             Response<User> checkresponse = userCall.execute();
-            System.out.println(checkresponse.isSuccessful());
             if(checkresponse.isSuccessful()){
                 checkemailreg=true;
-            }
-            else {
-                checkemailreg=false;
             }
         } catch (IOException e) {
             System.out.println(e);
@@ -110,4 +108,22 @@ public class UserApi {
         }
         return checkprofile;
     }
+
+    public boolean updateCoverPic(MultipartBody.Part image){
+        Call<Void> userCall = userRoute.updatecover(loginUserDetail.get_id(),image);
+        Strict.StrictMode();
+        try {
+            Response<Void> checkresponse = userCall.execute();
+            System.out.println(checkresponse.isSuccessful());
+            if(checkresponse.isSuccessful()){
+                updatecoverimage=true;
+                loginUserDetail = getuserbyid(loginUserDetail.get_id());
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return checkprofile;
+    }
+
 }

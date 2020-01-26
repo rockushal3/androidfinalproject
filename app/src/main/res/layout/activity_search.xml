@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.search">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/back_btn"
+            android:background="@drawable/ic_arrow_back_black_24dp"
+            android:backgroundTint="@color/colorAccent"
+            />
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:queryHint="Search Friend"
+            android:layout_toRightOf="@+id/back_btn"
+            android:id="@+id/search_friend"
+            android:iconifiedByDefault="false"
+            android:layout_marginRight="20dp"
+            />
+    </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/serchresult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
