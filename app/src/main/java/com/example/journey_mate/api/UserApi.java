@@ -114,6 +114,22 @@ public class UserApi {
         Strict.StrictMode();
         try {
             Response<Void> checkresponse = userCall.execute();
+            if(checkresponse.isSuccessful()){
+                updatecoverimage=true;
+                loginUserDetail = getuserbyid(loginUserDetail.get_id());
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return checkprofile;
+    }
+
+    public boolean updateProfilePic(MultipartBody.Part image){
+        Call<Void> userCall = userRoute.updateprofilepic(loginUserDetail.get_id(),image);
+        Strict.StrictMode();
+        try {
+            Response<Void> checkresponse = userCall.execute();
             System.out.println(checkresponse.isSuccessful());
             if(checkresponse.isSuccessful()){
                 updatecoverimage=true;

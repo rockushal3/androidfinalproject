@@ -6,9 +6,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Retro {
     private static final String BASE_URL
-            = "http://172.26.0.100:3030/";
+            = "http://10.0.2.2:3030/";
     public static final String IMG_URL
-            = "http://172.26.0.100:3030/image/";
+            = "http://10.0.2.2:3030/image/";
     public static String token = "Bearer ";
 
     public static Retrofit getInstance(){

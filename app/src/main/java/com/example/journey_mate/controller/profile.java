@@ -36,7 +36,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
     Button menu,btn_edit_profile;
     ImageButton updateprofileimage,updatecover;
     ActionBarDrawerToggle drawerToggle ;
-    CircleImageView profilepic1;
+    CircleImageView profileImage;
     ImageView coverimage;
     private RecyclerView postview;
 
@@ -89,7 +89,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         usergender= findViewById(R.id.usergender);
         profilename= findViewById(R.id.profile_name);
         coverimage=findViewById(R.id.coverpic);
-
+        profileImage =(CircleImageView) findViewById(R.id.profile_img);
 
         useraddress.setText("From "+UserApi.loginUserDetail.getAddress());
         usergender.setText(UserApi.loginUserDetail.getGender());
@@ -99,6 +99,8 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         profilename.setText(UserApi.loginUserDetail.getName());
 
             Picasso.with(this).load(Retro.IMG_URL + UserApi.loginUserDetail.getCoverimage()).into(coverimage);
+        Picasso.with(this).load(Retro.IMG_URL + UserApi.loginUserDetail.getImage()).into(profileImage);
+
             System.out.println(Retro.IMG_URL + UserApi.loginUserDetail.getCoverimage());
 
 
@@ -165,10 +167,12 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
                 break;
             case R.id.btn_profile_pic:
                profile_image profile_image = new profile_image();
-                profile_image.show(getSupportFragmentManager(), "123");
+                profile_image.show(getSupportFragmentManager(), "12");
+                break;
             case R.id.update_cover:
                 cover_pic cover_pic = new cover_pic();
                 cover_pic.show(getSupportFragmentManager(), "123");
+                break;
 
         }
     }

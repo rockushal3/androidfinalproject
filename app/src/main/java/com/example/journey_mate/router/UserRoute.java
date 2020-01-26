@@ -37,5 +37,7 @@ public interface UserRoute {
     @PUT("updateCover/{id}")
     Call<Void> updatecover(@Path("id") String id,@Part MultipartBody.Part img); //image file data type MultipartBody
 
-
+    @Multipart //for image
+    @PUT("updateProfile/{id}")
+    Call<Void> updateprofilepic(@Path("id") String id,@Part MultipartBody.Part img); //image file data type MultipartBody
 }

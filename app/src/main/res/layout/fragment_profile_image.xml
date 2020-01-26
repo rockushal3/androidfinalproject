@@ -18,11 +18,13 @@
         />
 
    <ImageView
+       android:id="@+id/profileimage"
        android:layout_marginTop="20dp"
        android:layout_width="200dp"
        android:layout_height="200dp"
        android:layout_gravity="center"
        android:src="@drawable/ic_launcher_background"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +32,7 @@
         android:gravity="center"
         >
     <Button
-        android:id="@+id/update_image"
+        android:id="@+id/update_image1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -45,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="@color/colorAccent"
-            android:text="Update Profile"
+            android:text="Choose Photo"
             android:textColor="@color/white"
             android:padding="10dp"
             android:layout_marginLeft="5dp"
