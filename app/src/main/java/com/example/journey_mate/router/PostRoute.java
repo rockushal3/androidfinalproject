@@ -11,6 +11,6 @@ import retrofit2.http.Part;
 public interface PostRoute {
     @Multipart //for image
     @POST("createpost")
-    Call<Void> createPost(@Part MultipartBody.Part img, @Part("caption") RequestBody caption, @Part("user_id") RequestBody user_id); //image file data type MultipartBody
+    Call<Void> createPost(@Part Multipart img, @Part("caption") String caption, @Part("user_id") String user_id); //image file data type MultipartBody
 
 }

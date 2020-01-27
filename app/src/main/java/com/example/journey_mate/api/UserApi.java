@@ -12,8 +12,11 @@ import retrofit2.Response;
 public class UserApi {
     UserRoute userRoute = Retro.getInstance()
             .create(UserRoute.class);
+    //variable to check the function
     boolean isloggedIn,isAlreadyLogin,userregister,checkemailreg,checkprofile,updatecoverimage = false;
     public static User loginUserDetail=null;
+
+    //for login function with api data
     public boolean userLogin(User apiUser){
         Call<User> userCall = userRoute.userLogin(apiUser);
         Strict.StrictMode();
@@ -31,6 +34,8 @@ public class UserApi {
         return isloggedIn;
     }
 
+    //for registration function add data to api
+
     public boolean userRegistration(User apiUser){
         Call<Void> userCall = userRoute.userRegister(apiUser);
         Strict.StrictMode();
@@ -45,6 +50,7 @@ public class UserApi {
         return userregister;
     }
 
+    // check login status
     public boolean checkLoginStatus(){
         Call<Void> userCall = userRoute.checkLogin(Retro.token);
         Strict.StrictMode();
@@ -59,6 +65,7 @@ public class UserApi {
         return isAlreadyLogin;
     }
 
+    //check email validation
     public boolean checkemail(String email){
         Call<User> userCall = userRoute.checkEmail(email);
         Strict.StrictMode();
@@ -74,6 +81,7 @@ public class UserApi {
         return checkemailreg;
     }
 
+    //get data of user from api with id
     public User getuserbyid(String id){
         Call<User> userCall = userRoute.finduserbyid(id);
         User userdetail = null;
@@ -89,6 +97,8 @@ public class UserApi {
         }
         return userdetail;
     }
+
+    //update profile detail
     public boolean updateProfile(User user){
         Call<Void> userCall = userRoute.updateProfile(loginUserDetail.get_id(),user);
         Strict.StrictMode();
@@ -109,6 +119,7 @@ public class UserApi {
         return checkprofile;
     }
 
+    //update cover picture
     public boolean updateCoverPic(MultipartBody.Part image){
         Call<Void> userCall = userRoute.updatecover(loginUserDetail.get_id(),image);
         Strict.StrictMode();
@@ -125,6 +136,7 @@ public class UserApi {
         return checkprofile;
     }
 
+    //update profile picture
     public boolean updateProfilePic(MultipartBody.Part image){
         Call<Void> userCall = userRoute.updateprofilepic(loginUserDetail.get_id(),image);
         Strict.StrictMode();
