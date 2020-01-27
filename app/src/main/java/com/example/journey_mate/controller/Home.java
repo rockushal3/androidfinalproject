@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 //note this import
 import com.example.journey_mate.R;
+import com.example.journey_mate.api.PostApi;
 import com.example.journey_mate.controller.fragment.Friend_Fragment;
 import com.example.journey_mate.controller.fragment.Friend_Request_Fragment;
 import com.example.journey_mate.controller.fragment.Home_Fragment;
@@ -71,6 +72,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         home_navigation = findViewById(R.id.homeNavigation);
         home_fragment = new Home_Fragment();
         setFragment(home_fragment);
+
+
 
 
         home_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

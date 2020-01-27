@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.journey_mate.R;
 import com.example.journey_mate.adaptor.PostAdaptor;
+import com.example.journey_mate.api.PostApi;
 import com.example.journey_mate.api.Retro;
 import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.controller.fragment.addTrip;
@@ -72,7 +73,8 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
 
         //Post Adaptor data code
         postview = findViewById(R.id.post_list_profile);
-        PostAdaptor adapter = new PostAdaptor(this);
+        PostApi postApi = new PostApi();
+        PostAdaptor adapter = new PostAdaptor(this,postApi.findpost());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         postview.setLayoutManager(layoutManager);
         postview.setAdapter(adapter);

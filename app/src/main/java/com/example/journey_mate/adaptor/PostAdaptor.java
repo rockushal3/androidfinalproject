@@ -11,6 +11,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.journey_mate.R;
+import com.example.journey_mate.api.Retro;
+import com.example.journey_mate.model.PostResponce;
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,9 +24,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class PostAdaptor extends RecyclerView.Adapter<PostAdaptor.PostHolder>{
 
     Context context;
+    List<PostResponce> listpost;
 
-    public PostAdaptor(Context context) {
+    public PostAdaptor(Context context,List<PostResponce> listpost) {
         this.context = context;
+        this.listpost=listpost;
     }
 
     @NonNull
@@ -36,12 +43,23 @@ public class PostAdaptor extends RecyclerView.Adapter<PostAdaptor.PostHolder>{
     public void onBindViewHolder(@NonNull PostHolder holder, int position) {
         holder.postimage.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fadein));
         holder.postbox.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fadepost));
+        final PostResponce post = listpost.get(position);
+        holder.postcaption.setText(post.getCaption());
+        holder.profilename.setText(post.getUser_id().getName());
+        if(!post.getImage().isEmpty()) {
+            Picasso.with(context).load(Retro.POST_IMG_URL + post.getImage()).into(holder.postimage);
+        }
+//        if(!post.getUser_id().getImage().isEmpty()){
+            Picasso.with(context).load(Retro.IMG_URL + post.getUser_id().getImage()).into(holder.profilepic);
+//        }
+
+        System.out.println(post.getUser_id().getImage());
 
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return listpost.size();
     }
 
     public class PostHolder extends RecyclerView.ViewHolder{
@@ -49,6 +67,7 @@ public class PostAdaptor extends RecyclerView.Adapter<PostAdaptor.PostHolder>{
         ImageView postimage;
         TextView postcaption,profilename;
         RelativeLayout postbox;
+
 
 
 

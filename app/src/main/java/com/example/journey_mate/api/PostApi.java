@@ -1,15 +1,16 @@
 package com.example.journey_mate.api;
 
-import com.example.journey_mate.model.User;
+import com.example.journey_mate.model.PostResponce;
 import com.example.journey_mate.router.PostRoute;
-import com.example.journey_mate.router.UserRoute;
 
 import java.io.IOException;
+import java.util.List;
 
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Response;
-import retrofit2.http.Multipart;
 
 public class PostApi {
 
@@ -20,7 +21,11 @@ public class PostApi {
     //variable to check the function
     boolean postcreate = false;
     public boolean CreatePostByUser(MultipartBody.Part image, String caption){
-        Call<Void> postCall = postRoute.createPost(image,caption, UserApi.loginUserDetail.get_id());
+        System.out.println(UserApi.loginUserDetail.get_id());
+        RequestBody postcaption = RequestBody.create(MediaType.parse("text/plain"), caption);
+        RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), UserApi.loginUserDetail.get_id());
+
+        Call<Void> postCall = postRoute.createPost(image,postcaption,user_id );
         Strict.StrictMode();
         try {
             Response<Void> postResponse = postCall.execute();
@@ -31,5 +36,18 @@ public class PostApi {
             System.out.println(e);
         }
         return postcreate;
+    }
+
+    public List<PostResponce> findpost(){
+        List<PostResponce> postlist = null;
+        Call<List<PostResponce>> postCall = postRoute.findPost();
+        Strict.StrictMode();
+        try {
+            Response<List<PostResponce>> postResponse = postCall.execute();
+            postlist=postResponse.body();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return  postlist;
     }
 }
