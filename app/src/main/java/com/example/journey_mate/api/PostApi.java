@@ -6,6 +6,7 @@ import com.example.journey_mate.router.UserRoute;
 
 import java.io.IOException;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Multipart;
@@ -18,7 +19,7 @@ public class PostApi {
             .create(PostRoute.class);
     //variable to check the function
     boolean postcreate = false;
-    public boolean CreatePostByUser(Multipart image,String caption){
+    public boolean CreatePostByUser(MultipartBody.Part image, String caption){
         Call<Void> postCall = postRoute.createPost(image,caption, UserApi.loginUserDetail.get_id());
         Strict.StrictMode();
         try {
