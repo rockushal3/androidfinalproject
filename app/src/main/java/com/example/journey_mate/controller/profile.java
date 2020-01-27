@@ -33,7 +33,7 @@ import com.squareup.picasso.Picasso;
 
 public class profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
     DrawerLayout drawerLayout;
-    Button menu,btn_edit_profile;
+    Button menu,btn_edit_profile,btn_addtrip;
     ImageButton updateprofileimage,updatecover;
     ActionBarDrawerToggle drawerToggle ;
     CircleImageView profileImage;
@@ -80,6 +80,8 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         //edit profile
         btn_edit_profile = findViewById(R.id.btn_edit_profile);
         btn_edit_profile.setOnClickListener(this);
+        btn_addtrip= findViewById(R.id.btn_addtrip);
+        btn_addtrip.setOnClickListener(this);
 
         //profile detail
         useraddress= findViewById(R.id.useradderss);
@@ -98,10 +100,12 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         userdob.setText("Birthday "+UserApi.loginUserDetail.getDob());
         profilename.setText(UserApi.loginUserDetail.getName());
 
+        if(UserApi.loginUserDetail.getCoverimage() != null) {
             Picasso.with(this).load(Retro.IMG_URL + UserApi.loginUserDetail.getCoverimage()).into(coverimage);
-        Picasso.with(this).load(Retro.IMG_URL + UserApi.loginUserDetail.getImage()).into(profileImage);
-
-            System.out.println(Retro.IMG_URL + UserApi.loginUserDetail.getCoverimage());
+        }
+        if(UserApi.loginUserDetail.getImage() != null) {
+            Picasso.with(this).load(Retro.IMG_URL + UserApi.loginUserDetail.getImage()).into(profileImage);
+        }
 
 
         //Image update
@@ -173,7 +177,10 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
                 cover_pic cover_pic = new cover_pic();
                 cover_pic.show(getSupportFragmentManager(), "123");
                 break;
-
+            case R.id.btn_addtrip:
+                intent = new Intent(profile.this,MyTrip.class);
+                startActivity(intent);
+                break;
         }
     }
 }
