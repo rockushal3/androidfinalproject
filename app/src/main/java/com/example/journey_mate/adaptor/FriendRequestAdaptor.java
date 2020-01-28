@@ -40,11 +40,9 @@ public class FriendRequestAdaptor extends RecyclerView.Adapter<FriendRequestAdap
     public void onBindViewHolder(@NonNull FriendRequestHolder holder, int position) {
         final FriendRelationResponce friend = friendrequestlist.get(position);
         if(!friend.getUser_id_1().getImage().isEmpty()) {
-            Picasso.with(context).load(Retro.POST_IMG_URL + friend.getUser_id_1().getImage()).into(holder.profilepic);
+            Picasso.with(context).load(Retro.IMG_URL + friend.getUser_id_1().getImage()).into(holder.profilepic);
         }
         holder.username.setText(friend.getUser_id_1().getName());
-
-
     }
 
     @Override
