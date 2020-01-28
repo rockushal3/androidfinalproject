@@ -6,9 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.journey_mate.R;
+import com.example.journey_mate.api.FriendRequestApi;
 import com.example.journey_mate.api.Retro;
+import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.model.FriendRelationResponce;
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +25,7 @@ public class FriendRequestAdaptor extends RecyclerView.Adapter<FriendRequestAdap
 
     Context context;
     List<FriendRelationResponce> friendrequestlist;
+    FriendRequestApi friendRequestApi = new FriendRequestApi();
 
     public FriendRequestAdaptor(Context context, List<FriendRelationResponce> friendrequestlist) {
         this.context = context;
@@ -43,6 +47,15 @@ public class FriendRequestAdaptor extends RecyclerView.Adapter<FriendRequestAdap
             Picasso.with(context).load(Retro.IMG_URL + friend.getUser_id_1().getImage()).into(holder.profilepic);
         }
         holder.username.setText(friend.getUser_id_1().getName());
+
+        holder.confirm_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context,friend.getUser_id_1().getName() +" and "+ UserApi.loginUserDetail.getName()+ " are Friends", Toast.LENGTH_SHORT).show();
+                friendRequestApi.AcceptFriend(friend.get_id());
+
+            }
+        });
     }
 
     @Override

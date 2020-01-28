@@ -6,9 +6,12 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface FriendRequestRoute {
     @GET("getrequest/{id}")
     Call<List<FriendRelationResponce>> getRequest(@Path("id") String id);
+    @PUT("acceptfriend/{id}")
+    Call<Void> acceptFriend(@Path("id") String id);
 }

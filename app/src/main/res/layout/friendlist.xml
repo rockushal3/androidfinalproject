@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/profile"
+        android:transitionName="profileImage"
+        android:layout_below="@+id/search_friend"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/menu_username"
+        android:text="Kushal Shrestha"
+        android:transitionName="profileName"
+        android:textSize="16dp"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        android:layout_toRightOf="@id/profile_image"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:layout_below="@+id/search_friend"
+        />
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_toRightOf="@id/profile_image"
+        android:layout_below="@id/menu_username"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:text="Kathmandu, Nepal"
+        />
+    <Button
+        android:layout_width="40dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/toggel_icon"
+        android:backgroundTint="@color/black"
+        android:layout_below="@+id/search_friend"
+        />
+</RelativeLayout>
