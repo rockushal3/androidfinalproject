@@ -24,4 +24,6 @@ public interface PostRoute {
 
     @GET("findpostByUserId/{id}")
     Call<List<PostResponce>> findPostByUserId(@Path("id") String id);
+
+
 }

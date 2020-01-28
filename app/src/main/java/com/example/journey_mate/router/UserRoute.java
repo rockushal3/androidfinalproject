@@ -40,4 +40,5 @@ public interface UserRoute {
     @Multipart //for image
     @PUT("updateProfile/{id}")
     Call<Void> updateprofilepic(@Path("id") String id,@Part MultipartBody.Part img); //image file data type MultipartBody
+
 }

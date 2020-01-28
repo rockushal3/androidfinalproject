@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".controller.search"></activity>
+        <activity android:name=".controller.UserProfile"></activity>
+        <activity android:name=".controller.search" />
         <activity android:name=".controller.updateProfile" />
         <activity android:name=".controller.About" />
         <activity android:name=".controller.MyTrip" />

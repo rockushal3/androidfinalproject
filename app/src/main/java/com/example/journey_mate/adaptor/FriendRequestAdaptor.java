@@ -51,8 +51,9 @@ public class FriendRequestAdaptor extends RecyclerView.Adapter<FriendRequestAdap
         holder.confirm_request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,friend.getUser_id_1().getName() +" and "+ UserApi.loginUserDetail.getName()+ " are Friends", Toast.LENGTH_SHORT).show();
-                friendRequestApi.AcceptFriend(friend.get_id());
+                if(friendRequestApi.AcceptFriend(friend.get_id())) {
+                    Toast.makeText(context, friend.getUser_id_1().getName() + " and " + UserApi.loginUserDetail.getName() + " are Friends", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

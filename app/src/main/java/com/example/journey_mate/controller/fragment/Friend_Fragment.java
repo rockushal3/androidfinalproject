@@ -17,34 +17,30 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.journey_mate.R;
+import com.example.journey_mate.adaptor.FriendListAdaptor;
+import com.example.journey_mate.adaptor.FriendRequestAdaptor;
 import com.example.journey_mate.adaptor.PostAdaptor;
+import com.example.journey_mate.api.FriendRequestApi;
 import com.example.journey_mate.controller.profile;
 
 public class Friend_Fragment extends Fragment {
 
-    TextView name;
-    CircleImageView profileImage;
+    RecyclerView friendrecycle;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_friend_, container, false);
-        name = root.findViewById(R.id.menu_username);
-        profileImage = root.findViewById(R.id.profile_image);
+
+        friendrecycle= root.findViewById(R.id.recycle_friend);
+        FriendRequestApi friendRequestApi = new FriendRequestApi();
+
+        FriendListAdaptor adapter = new FriendListAdaptor(getContext(), friendRequestApi.getFriendList());
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        friendrecycle.setLayoutManager(layoutManager);
+        friendrecycle.setAdapter(adapter);
 
 
-        name.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getContext(), profile.class);
-                Pair[] pairs = new Pair[2];
-                pairs[0] = new Pair<View,String>(profileImage,"profileImage");
-                pairs[1] = new Pair<View,String>(name,"profileName");
-                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) getContext(),
-                        pairs);
-                startActivity(intent,options.toBundle());
-            }
-        });
 
 
         return root;
