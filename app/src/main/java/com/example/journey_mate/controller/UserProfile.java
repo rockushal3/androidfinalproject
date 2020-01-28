@@ -6,10 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,11 +22,15 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.journey_mate.R;
+import com.example.journey_mate.adaptor.PostAdaptor;
 import com.example.journey_mate.api.FriendRequestApi;
+import com.example.journey_mate.api.PostApi;
 import com.example.journey_mate.api.Retro;
 import com.example.journey_mate.api.UserApi;
+import com.example.journey_mate.model.FriendRelation;
 import com.example.journey_mate.model.FriendRelationResponce;
 import com.example.journey_mate.model.User;
 import com.google.android.material.navigation.NavigationView;
@@ -30,7 +39,7 @@ import com.squareup.picasso.Picasso;
 public class UserProfile extends AppCompatActivity implements View.OnClickListener,NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
-    Button menu;
+    Button menu,sendrequest,confirm_button,Friendsbtn;
     CircleImageView profileImage;
     ImageView coverimage;
     ActionBarDrawerToggle drawerToggle ;
@@ -42,6 +51,9 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     User userdetail;
     FriendRelationResponce friendRelationResponce;
     TextView profilename,userdob,useraddress,userphone,usergender,useremail;
+    RecyclerView postview;
+    TextView drawer_name,drawer_address;
+    CircleImageView drawer_image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +68,21 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         menu = findViewById(R.id.btn_menu);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout.setDrawerListener(drawerToggle);
+        View header = navigationView.getHeaderView(0);
+        drawer_name = header.findViewById(R.id.drawer_name);
+        drawer_address = header.findViewById(R.id.drawer_address);
+        drawer_image = header.findViewById(R.id.drawer_image);
+        drawer_address.setText(UserApi.loginUserDetail.getAddress());
+        drawer_name.setText(UserApi.loginUserDetail.getName());
+        if(!UserApi.loginUserDetail.getImage().isEmpty()){
+            Picasso.with(this).load(Retro.IMG_URL + UserApi.loginUserDetail.getImage()).into(drawer_image);
+        }
         menu.setOnClickListener(this);
 
         //For User Relation Status
+        Friendsbtn=findViewById(R.id.Friendsbtn);
+        confirm_button=findViewById(R.id.confirm_button);
+        sendrequest= findViewById(R.id.sendrequest);
         sendFriendRequest = findViewById(R.id.sendFriendRequest);
         Nofriends = findViewById(R.id.Nofriends);
         FriendsofUser = findViewById(R.id.FriendsofUser);
@@ -66,18 +90,30 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         Id = getIntent().getStringExtra("Id");
         userdetail=userApi.getuserbyid(Id);
         friendRelationResponce = friendRequestApi.checkFriendStatus(Id);
-        System.out.println(friendRelationResponce.getStatus());
+        if(friendRelationResponce== null) {
+            Nofriends.setVisibility(View.VISIBLE);
+           sendrequest.setOnClickListener(this);
+        }
+        else{
+            System.out.println(friendRelationResponce.getStatus());
         if(friendRelationResponce.getStatus().equals("Friends")){
             FriendsofUser.setVisibility(View.VISIBLE);
+            //Post Adaptor data code
+            postview = findViewById(R.id.post_list_profile);
+            PostApi postApi = new PostApi();
+            PostAdaptor adapter = new PostAdaptor(this,postApi.findpostByuserId(Id));
+            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+            postview.setLayoutManager(layoutManager);
+            postview.setAdapter(adapter);
+            Friendsbtn.setOnClickListener(this);
         }
-        if(friendRelationResponce.getStatus().equals("Requested") && friendRelationResponce.getUser_id_1().get_id().equals(UserApi.loginUserDetail.get_id())){
+        else if(friendRelationResponce.getStatus().equals("Requested") && friendRelationResponce.getUser_id_1().get_id().equals(UserApi.loginUserDetail.get_id())){
             sendFriendRequest.setVisibility(View.VISIBLE);
         }
-        if(friendRelationResponce.getStatus().equals("Requested") && friendRelationResponce.getUser_id_2().get_id().equals(UserApi.loginUserDetail.get_id())){
+        else if(friendRelationResponce.getStatus().equals("Requested") && friendRelationResponce.getUser_id_2().get_id().equals(UserApi.loginUserDetail.get_id())){
             FriendRequestofUser.setVisibility(View.VISIBLE);
+            confirm_button.setOnClickListener(this);
         }
-        if(friendRelationResponce== null){
-            Nofriends.setVisibility(View.VISIBLE);
         }
 
         //profile detail
@@ -93,7 +129,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         useraddress.setText("From "+userdetail.getAddress());
         usergender.setText(userdetail.getGender());
         userphone.setText("Mobile No. +977 " + userdetail.getPhone());
-        useremail.setText(UserApi.loginUserDetail.getEmail());
+        useremail.setText(userdetail.getEmail());
         userdob.setText("Birthday "+userdetail.getDob());
         profilename.setText(userdetail.getName());
 
@@ -132,9 +168,13 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 intent = new Intent(this,MyTrip.class);
                 startActivity(intent);
                 break;
-
             case R.id.about:
                 intent = new Intent(this,About.class);
+                startActivity(intent);
+                break;
+            case R.id.friendsList:
+                intent = new Intent(this,Friends.class);
+                intent.putExtra("Id", UserApi.loginUserDetail.get_id());
                 startActivity(intent);
                 break;
         }
@@ -146,10 +186,31 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
+        Intent intent;
         switch (view.getId()){
             case R.id.btn_menu:
                 openDrawer();
              break;
+            case R.id.sendrequest:
+                FriendRelation friendRelation = new FriendRelation(UserApi.loginUserDetail.get_id(),Id,"");
+                friendRequestApi.sendRequest(friendRelation);
+                intent = new Intent(UserProfile.this, UserProfile.class);
+                intent.putExtra("Id", Id);
+                startActivity(intent);
+             break;
+            case R.id.confirm_button:
+                if(friendRequestApi.AcceptFriend(friendRelationResponce.get_id())) {
+                    Toast.makeText(UserProfile.this, friendRelationResponce.getUser_id_1().getName() + " and " + UserApi.loginUserDetail.getName() + " are Friends", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(UserProfile.this, UserProfile.class);
+                    intent.putExtra("Id", Id);
+                    startActivity(intent);
+                }
+             break;
+            case R.id.Friendsbtn:
+                intent = new Intent(UserProfile.this,Friends.class);
+                intent.putExtra("Id", Id);
+                startActivity(intent);
+                break;
         }
 
     }

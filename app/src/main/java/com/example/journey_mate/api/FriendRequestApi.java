@@ -1,5 +1,6 @@
 package com.example.journey_mate.api;
 
+import com.example.journey_mate.model.FriendRelation;
 import com.example.journey_mate.model.FriendRelationResponce;
 import com.example.journey_mate.router.FriendRequestRoute;
 
@@ -12,7 +13,7 @@ import retrofit2.Response;
 public class FriendRequestApi {
     FriendRequestRoute friendRequestRoute = Retro.getInstance()
             .create(FriendRequestRoute.class);
-    Boolean checkFriendAccept=false;
+    Boolean checkFriendAccept,checksendrequest=false;
 
     public List<FriendRelationResponce> findrequestByuserId(){
         List<FriendRelationResponce> requestlist = null;
@@ -27,9 +28,9 @@ public class FriendRequestApi {
         return  requestlist;
     }
 
-    public List<FriendRelationResponce> getFriendList(){
+    public List<FriendRelationResponce> getFriendList(String Id){
         List<FriendRelationResponce> requestlist = null;
-        Call<List<FriendRelationResponce>> postCall = friendRequestRoute.getFriendList(UserApi.loginUserDetail.get_id());
+        Call<List<FriendRelationResponce>> postCall = friendRequestRoute.getFriendList(Id);
         Strict.StrictMode();
         try {
             Response<List<FriendRelationResponce>> friendresponse = postCall.execute();
@@ -52,6 +53,20 @@ public class FriendRequestApi {
             System.out.println(e);
         }
         return checkFriendAccept;
+    }
+
+    public Boolean sendRequest(FriendRelation friendRelation){
+        Call<Void> postCall = friendRequestRoute.sendRequest(friendRelation);
+        Strict.StrictMode();
+        try {
+            Response<Void> friendresponse = postCall.execute();
+            if(friendresponse.isSuccessful()){
+                checksendrequest=true;
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return checksendrequest;
     }
 
     public FriendRelationResponce checkFriendStatus(String id){

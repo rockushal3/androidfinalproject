@@ -54,9 +54,9 @@ public class PostApi {
         return  postlist;
     }
 
-    public List<PostResponce> findpostByuserId(){
+    public List<PostResponce> findpostByuserId(String Id){
         List<PostResponce> postlist = null;
-        Call<List<PostResponce>> postCall = postRoute.findPostByUserId(UserApi.loginUserDetail.get_id());
+        Call<List<PostResponce>> postCall = postRoute.findPostByUserId(Id);
         Strict.StrictMode();
         try {
             Response<List<PostResponce>> postResponse = postCall.execute();

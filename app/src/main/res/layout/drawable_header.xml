@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/menu_username"
+            android:id="@+id/drawer_name"
             android:text="Kushal Shrestha"
             android:textSize="20dp"
             android:textColor="@color/white"
@@ -25,7 +25,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/menu_address"
+            android:id="@+id/drawer_address"
             android:text="Jorpati, Kathmandu"
             android:textColor="@color/white"
             />
@@ -33,7 +33,7 @@
     </LinearLayout>
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/drawer_image"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="10dp"

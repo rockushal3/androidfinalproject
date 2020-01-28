@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.journey_mate.R;
@@ -24,12 +26,15 @@ import com.example.journey_mate.model.Trip;
 import com.example.journey_mate.router.UserRoute;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 public class MyTrip extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
     Button menu;
     ActionBarDrawerToggle drawerToggle ;
     FloatingActionButton addtrip;
+    TextView drawer_name,drawer_address;
+    CircleImageView drawer_image;
 
     TripApi tripApi = new TripApi();
     @Override
@@ -46,6 +51,15 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
         menu = findViewById(R.id.btn_menu);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout.setDrawerListener(drawerToggle);
+        View header = navigationView.getHeaderView(0);
+        drawer_name = header.findViewById(R.id.drawer_name);
+        drawer_address = header.findViewById(R.id.drawer_address);
+        drawer_image = header.findViewById(R.id.drawer_image);
+        drawer_address.setText(UserApi.loginUserDetail.getAddress());
+        drawer_name.setText(UserApi.loginUserDetail.getName());
+        if(!UserApi.loginUserDetail.getImage().isEmpty()){
+            Picasso.with(this).load(Retro.IMG_URL + UserApi.loginUserDetail.getImage()).into(drawer_image);
+        }
         // Top Navigation View
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +111,11 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
 
             case R.id.about:
                 intent = new Intent(this,About.class);
+                startActivity(intent);
+                break;
+            case R.id.friendsList:
+                intent = new Intent(this,Friends.class);
+                intent.putExtra("Id", UserApi.loginUserDetail.get_id());
                 startActivity(intent);
                 break;
         }

@@ -4,10 +4,10 @@ public class FriendRelationResponce {
     User user_id_1,user_id_2;
     String Status,_id;
 
-    public FriendRelationResponce(User user_id_1, User user_id_2, String status, String _id) {
+    public FriendRelationResponce(User user_id_1, User user_id_2, String Status, String _id) {
         this.user_id_1 = user_id_1;
         this.user_id_2 = user_id_2;
-        this.Status = status;
+        this.Status = Status;
         this._id =_id;
     }
 

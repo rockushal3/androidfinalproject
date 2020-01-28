@@ -1,6 +1,10 @@
 package com.example.journey_mate.adaptor;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +16,9 @@ import android.widget.TextView;
 
 import com.example.journey_mate.R;
 import com.example.journey_mate.api.Retro;
+import com.example.journey_mate.api.UserApi;
+import com.example.journey_mate.controller.UserProfile;
+import com.example.journey_mate.controller.profile;
 import com.example.journey_mate.model.PostResponce;
 import com.squareup.picasso.Picasso;
 
@@ -41,7 +48,7 @@ public class PostAdaptor extends RecyclerView.Adapter<PostAdaptor.PostHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PostHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PostHolder holder, int position) {
         holder.postimage.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fadein));
         holder.postbox.setAnimation(AnimationUtils.loadAnimation(context,R.anim.fadepost));
         final PostResponce post = listpost.get(position);
@@ -55,7 +62,32 @@ public class PostAdaptor extends RecyclerView.Adapter<PostAdaptor.PostHolder>{
             Picasso.with(context).load(Retro.IMG_URL + post.getUser_id().getImage()).into(holder.profilepic);
         }
 
-        System.out.println(post.getUser_id().getImage());
+        holder.profilename.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (post.getUser_id().get_id().equals(UserApi.loginUserDetail.get_id())){
+
+                    Intent intent = new Intent(context, profile.class);
+                    Pair[] pairs = new Pair[2];
+                    pairs[0] = new Pair<View, String>(holder.profilepic, "profileImage");
+                    pairs[1] = new Pair<View, String>(holder.profilename, "profileName");
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
+                            pairs);
+                    context.startActivity(intent, options.toBundle());
+
+                }
+                else {
+                    Intent intent = new Intent(context, UserProfile.class);
+                    Pair[] pairs = new Pair[2];
+                    pairs[0] = new Pair<View, String>(holder.profilepic, "profileImage");
+                    pairs[1] = new Pair<View, String>(holder.profilename, "profileName");
+                    intent.putExtra("Id", post.getUser_id().get_id());
+                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
+                            pairs);
+                    context.startActivity(intent, options.toBundle());
+                }
+            }
+        });
 
     }
 

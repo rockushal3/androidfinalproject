@@ -9,22 +9,27 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 //note this import
 import com.example.journey_mate.R;
 import com.example.journey_mate.api.PostApi;
+import com.example.journey_mate.api.Retro;
+import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.controller.fragment.Friend_Fragment;
 import com.example.journey_mate.controller.fragment.Friend_Request_Fragment;
 import com.example.journey_mate.controller.fragment.Home_Fragment;
 import com.example.journey_mate.controller.fragment.NotificationFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -37,6 +42,8 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     Friend_Fragment friend_fragment;
     Friend_Request_Fragment friend_request_fragment;
     NotificationFragment notificationFragment;
+    TextView drawer_name,drawer_address;
+    CircleImageView drawer_image;
 
 
     @Override
@@ -61,6 +68,15 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
                 openDrawer();
             }
         });
+        View header = navigationView.getHeaderView(0);
+        drawer_name = header.findViewById(R.id.drawer_name);
+        drawer_address = header.findViewById(R.id.drawer_address);
+        drawer_image = header.findViewById(R.id.drawer_image);
+        drawer_address.setText(UserApi.loginUserDetail.getAddress());
+        drawer_name.setText(UserApi.loginUserDetail.getName());
+        if(!UserApi.loginUserDetail.getImage().isEmpty()){
+            Picasso.with(this).load(Retro.IMG_URL + UserApi.loginUserDetail.getImage()).into(drawer_image);
+        }
 
         //hover item selected in navigation drawer
         MenuItem item = navigationView.getMenu().findItem(R.id.home_nav);
@@ -137,6 +153,11 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
             case R.id.about:
                 intent = new Intent(this,About.class);
+                startActivity(intent);
+                break;
+            case R.id.friendsList:
+                intent = new Intent(this,Friends.class);
+                intent.putExtra("Id", UserApi.loginUserDetail.get_id());
                 startActivity(intent);
                 break;
         }

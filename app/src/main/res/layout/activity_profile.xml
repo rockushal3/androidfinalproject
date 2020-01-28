@@ -112,6 +112,7 @@
                 android:layout_height="wrap_content"
                 android:drawableTint="@color/colorAccent"
                 android:layout_columnWeight="1"
+                android:id="@+id/friends_btn"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:text="Friends"
                 android:drawableTop="@drawable/friend_icon"

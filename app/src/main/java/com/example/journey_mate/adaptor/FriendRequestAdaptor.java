@@ -1,6 +1,10 @@
 package com.example.journey_mate.adaptor;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
+import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +16,7 @@ import com.example.journey_mate.R;
 import com.example.journey_mate.api.FriendRequestApi;
 import com.example.journey_mate.api.Retro;
 import com.example.journey_mate.api.UserApi;
+import com.example.journey_mate.controller.UserProfile;
 import com.example.journey_mate.model.FriendRelationResponce;
 import com.squareup.picasso.Picasso;
 
@@ -41,12 +46,26 @@ public class FriendRequestAdaptor extends RecyclerView.Adapter<FriendRequestAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FriendRequestHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final FriendRequestHolder holder, int position) {
         final FriendRelationResponce friend = friendrequestlist.get(position);
         if(!friend.getUser_id_1().getImage().isEmpty()) {
             Picasso.with(context).load(Retro.IMG_URL + friend.getUser_id_1().getImage()).into(holder.profilepic);
         }
         holder.username.setText(friend.getUser_id_1().getName());
+        holder.username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, UserProfile.class);
+                Pair[] pairs = new Pair[2];
+                pairs[0] = new Pair<View,String>(holder.profilepic,"profileImage");
+                pairs[1] = new Pair<View,String>(holder.username,"profileName");
+                intent.putExtra("Id", friend.getUser_id_1().get_id());
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
+                        pairs);
+                context.startActivity(intent,options.toBundle());
+
+            }
+        });
 
         holder.confirm_request.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +73,7 @@ public class FriendRequestAdaptor extends RecyclerView.Adapter<FriendRequestAdap
                 if(friendRequestApi.AcceptFriend(friend.get_id())) {
                     Toast.makeText(context, friend.getUser_id_1().getName() + " and " + UserApi.loginUserDetail.getName() + " are Friends", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
         });

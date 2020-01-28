@@ -21,6 +21,7 @@ import com.example.journey_mate.adaptor.FriendListAdaptor;
 import com.example.journey_mate.adaptor.FriendRequestAdaptor;
 import com.example.journey_mate.adaptor.PostAdaptor;
 import com.example.journey_mate.api.FriendRequestApi;
+import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.controller.profile;
 
 public class Friend_Fragment extends Fragment {
@@ -35,7 +36,7 @@ public class Friend_Fragment extends Fragment {
         friendrecycle= root.findViewById(R.id.recycle_friend);
         FriendRequestApi friendRequestApi = new FriendRequestApi();
 
-        FriendListAdaptor adapter = new FriendListAdaptor(getContext(), friendRequestApi.getFriendList());
+        FriendListAdaptor adapter = new FriendListAdaptor(getContext(), friendRequestApi.getFriendList(UserApi.loginUserDetail.get_id()));
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         friendrecycle.setLayoutManager(layoutManager);
         friendrecycle.setAdapter(adapter);

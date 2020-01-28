@@ -34,12 +34,14 @@ import com.squareup.picasso.Picasso;
 
 public class profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
     DrawerLayout drawerLayout;
-    Button menu,btn_edit_profile,btn_addtrip;
+    Button menu,btn_edit_profile,btn_addtrip,friends_btn;
     ImageButton updateprofileimage,updatecover;
     ActionBarDrawerToggle drawerToggle ;
     CircleImageView profileImage;
     ImageView coverimage;
     private RecyclerView postview;
+    TextView drawer_name,drawer_address;
+    CircleImageView drawer_image;
 
     TextView profilename,userdob,useraddress,userphone,usergender,useremail;
 
@@ -58,6 +60,15 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         menu = findViewById(R.id.btn_menu);
         navigationView.setNavigationItemSelectedListener(this);
         drawerLayout.setDrawerListener(drawerToggle);
+        View header = navigationView.getHeaderView(0);
+        drawer_name = header.findViewById(R.id.drawer_name);
+        drawer_address = header.findViewById(R.id.drawer_address);
+        drawer_image = header.findViewById(R.id.drawer_image);
+        drawer_address.setText(UserApi.loginUserDetail.getAddress());
+        drawer_name.setText(UserApi.loginUserDetail.getName());
+        if(!UserApi.loginUserDetail.getImage().isEmpty()){
+            Picasso.with(this).load(Retro.IMG_URL + UserApi.loginUserDetail.getImage()).into(drawer_image);
+        }
         // Top Navigation View
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,7 +85,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         //Post Adaptor data code
         postview = findViewById(R.id.post_list_profile);
         PostApi postApi = new PostApi();
-        PostAdaptor adapter = new PostAdaptor(this,postApi.findpostByuserId());
+        PostAdaptor adapter = new PostAdaptor(this,postApi.findpostByuserId(UserApi.loginUserDetail.get_id()));
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         postview.setLayoutManager(layoutManager);
         postview.setAdapter(adapter);
@@ -117,6 +128,9 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         updateprofileimage.setOnClickListener(this);
         updatecover.setOnClickListener(this);
 
+        friends_btn= findViewById(R.id.friends_btn);
+        friends_btn.setOnClickListener(this);
+
 
     }
 
@@ -147,6 +161,11 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
 
             case R.id.about:
                 intent = new Intent(this,About.class);
+                startActivity(intent);
+                break;
+            case R.id.friendsList:
+                intent = new Intent(this,Friends.class);
+                intent.putExtra("Id", UserApi.loginUserDetail.get_id());
                 startActivity(intent);
                 break;
         }
@@ -183,6 +202,10 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
                 intent = new Intent(profile.this,MyTrip.class);
                 startActivity(intent);
                 break;
+            case R.id.friends_btn:
+                intent = new Intent(profile.this,Friends.class);
+                intent.putExtra("Id", UserApi.loginUserDetail.get_id());
+                startActivity(intent);
         }
     }
 }
