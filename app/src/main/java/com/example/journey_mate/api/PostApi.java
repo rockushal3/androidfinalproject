@@ -4,6 +4,7 @@ import com.example.journey_mate.model.PostResponce;
 import com.example.journey_mate.router.PostRoute;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -45,9 +46,25 @@ public class PostApi {
         try {
             Response<List<PostResponce>> postResponse = postCall.execute();
             postlist=postResponse.body();
+
+
         } catch (IOException e) {
             System.out.println(e);
         }
         return  postlist;
     }
+
+    public List<PostResponce> findpostByuserId(){
+        List<PostResponce> postlist = null;
+        Call<List<PostResponce>> postCall = postRoute.findPostByUserId(UserApi.loginUserDetail.get_id());
+        Strict.StrictMode();
+        try {
+            Response<List<PostResponce>> postResponse = postCall.execute();
+            postlist=postResponse.body();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return  postlist;
+    }
+
 }

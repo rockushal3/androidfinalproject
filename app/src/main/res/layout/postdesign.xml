@@ -27,6 +27,7 @@
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/post_profileimg"/>
     <TextView
+        android:id="@+id/posttime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="3hr"
@@ -39,9 +40,10 @@
         android:layout_width="13dp"
         android:layout_height="13dp"
         android:background="@drawable/public_icon"
+        android:layout_toRightOf="@+id/posttime"
         android:backgroundTint="#95989A"
         android:layout_marginTop="30dp"
-        android:layout_marginLeft="75dp"/>
+        />
     <Button
         android:layout_width="32dp"
         android:layout_height="32dp"

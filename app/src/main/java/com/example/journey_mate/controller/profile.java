@@ -74,7 +74,7 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         //Post Adaptor data code
         postview = findViewById(R.id.post_list_profile);
         PostApi postApi = new PostApi();
-        PostAdaptor adapter = new PostAdaptor(this,postApi.findpost());
+        PostAdaptor adapter = new PostAdaptor(this,postApi.findpostByuserId());
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         postview.setLayoutManager(layoutManager);
         postview.setAdapter(adapter);

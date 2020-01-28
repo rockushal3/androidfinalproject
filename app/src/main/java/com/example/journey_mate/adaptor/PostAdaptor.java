@@ -15,6 +15,7 @@ import com.example.journey_mate.api.Retro;
 import com.example.journey_mate.model.PostResponce;
 import com.squareup.picasso.Picasso;
 
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -46,12 +47,13 @@ public class PostAdaptor extends RecyclerView.Adapter<PostAdaptor.PostHolder>{
         final PostResponce post = listpost.get(position);
         holder.postcaption.setText(post.getCaption());
         holder.profilename.setText(post.getUser_id().getName());
+        holder.posttime.setText(timeAgoInWords(post.getDate()));
         if(!post.getImage().isEmpty()) {
             Picasso.with(context).load(Retro.POST_IMG_URL + post.getImage()).into(holder.postimage);
         }
-//        if(!post.getUser_id().getImage().isEmpty()){
+        if(!post.getUser_id().getImage().isEmpty()){
             Picasso.with(context).load(Retro.IMG_URL + post.getUser_id().getImage()).into(holder.profilepic);
-//        }
+        }
 
         System.out.println(post.getUser_id().getImage());
 
@@ -65,8 +67,9 @@ public class PostAdaptor extends RecyclerView.Adapter<PostAdaptor.PostHolder>{
     public class PostHolder extends RecyclerView.ViewHolder{
         CircleImageView profilepic;
         ImageView postimage;
-        TextView postcaption,profilename;
+        TextView postcaption,profilename,posttime;
         RelativeLayout postbox;
+
 
 
 
@@ -76,8 +79,37 @@ public class PostAdaptor extends RecyclerView.Adapter<PostAdaptor.PostHolder>{
             profilename=itemView.findViewById(R.id.profile_name);
             postcaption = itemView.findViewById(R.id.post_caption);
             postimage = itemView.findViewById(R.id.post_image);
-            profilepic= itemView.findViewById(R.id.profile_image);
+            profilepic= itemView.findViewById(R.id.post_profileimg);
             postbox = itemView.findViewById(R.id.post_box);
+            posttime=itemView.findViewById(R.id.posttime);
+        }
+    }
+
+
+    public static String timeAgoInWords(Date from) {
+        Date now = new Date();
+        long difference = now.getTime() - from.getTime();
+        long distanceInMin = difference / 60000;
+
+        if ( 0 <= distanceInMin && distanceInMin <= 1 ) {
+            return "Less than 1 min ago";
+        } else if ( 1 <= distanceInMin && distanceInMin <= 45 ) {
+            return distanceInMin + " min ago";
+        } else if ( 45 <= distanceInMin && distanceInMin <= 89 ) {
+            return "1 hour";
+        } else if ( 90 <= distanceInMin && distanceInMin <= 1439 ) {
+            return (distanceInMin / 60) + " hr ago";
+        } else if ( 1440 <= distanceInMin && distanceInMin <= 2529 ) {
+            return "1 day";
+        } else if ( 2530 <= distanceInMin && distanceInMin <= 43199 ) {
+            return (distanceInMin / 1440) + "days ago";
+        } else if ( 43200 <= distanceInMin && distanceInMin <= 86399 ) {
+            return "About 1 month ago";
+        } else if ( 86400 <= distanceInMin && distanceInMin <= 525599 ) {
+            return  (distanceInMin / 43200) + " months ago";
+        } else {
+            long distanceInYears = distanceInMin / 525600;
+            return distanceInYears + " years ago";
         }
     }
 }
