@@ -86,7 +86,7 @@ public class FriendRequestApi {
 
     public Boolean deletePost(String Id) {
         Boolean checkdelete = false;
-        Call<Void> postCall = postRoute.deletePost(Id);
+        Call<Void> postCall =friendRequestRoute.deleteFriend(Id);
         Strict.StrictMode();
         try {
             Response<Void> postResponse = postCall.execute();

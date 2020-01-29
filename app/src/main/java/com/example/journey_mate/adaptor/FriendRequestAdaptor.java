@@ -84,6 +84,19 @@ public class FriendRequestAdaptor extends RecyclerView.Adapter<FriendRequestAdap
 
             }
         });
+
+        holder.delete_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(friendRequestApi.deletePost(friend.get_id())) {
+                    Toast.makeText(context, friend.getUser_id_1().getName() + " friend Request Has been deleted" , Toast.LENGTH_SHORT).show();
+                    FragmentTransaction ft = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+                    ft.detach(fragment).attach(fragment).commit();
+                }
+
+
+            }
+        });
     }
 
     @Override
