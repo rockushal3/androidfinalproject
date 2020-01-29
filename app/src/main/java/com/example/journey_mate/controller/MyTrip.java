@@ -30,7 +30,7 @@ import com.squareup.picasso.Picasso;
 
 public class MyTrip extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
-    Button menu;
+    Button menu,search_btn;
     ActionBarDrawerToggle drawerToggle ;
     FloatingActionButton addtrip;
     TextView drawer_name,drawer_address;
@@ -75,6 +75,14 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
         item.setCheckable(true);
         item.setChecked(true);
 
+        search_btn = findViewById(R.id.btn_search);
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyTrip.this,search.class);
+                startActivity(intent);
+            }
+        });
 
 
         //floating Button

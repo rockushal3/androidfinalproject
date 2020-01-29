@@ -61,7 +61,7 @@
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/colorAccent"
             android:ems="10"
-            android:drawableLeft="@drawable/profile_icon"
+            android:drawableLeft="@drawable/ic_vpn_key_black_24dp"
             android:drawablePadding="20dp"
             android:drawableTint="@color/colorAccent"
             android:hint="password"

@@ -39,7 +39,7 @@ import com.squareup.picasso.Picasso;
 public class UserProfile extends AppCompatActivity implements View.OnClickListener,NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
-    Button menu,sendrequest,confirm_button,Friendsbtn;
+    Button menu,sendrequest,confirm_button,Friendsbtn,search_btn;
     CircleImageView profileImage;
     ImageView coverimage;
     ActionBarDrawerToggle drawerToggle ;
@@ -140,11 +140,14 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
             Picasso.with(this).load(Retro.IMG_URL + userdetail.getImage()).into(profileImage);
         }
 
-
-
-
-
-
+        search_btn = findViewById(R.id.btn_search);
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UserProfile.this,search.class);
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -204,6 +207,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                     intent = new Intent(UserProfile.this, UserProfile.class);
                     intent.putExtra("Id", Id);
                     startActivity(intent);
+                    finish();
                 }
              break;
             case R.id.Friendsbtn:

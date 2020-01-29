@@ -34,7 +34,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
-    Button menu;
+    Button menu,search_btn;
     ActionBarDrawerToggle drawerToggle ;
 
     BottomNavigationView home_navigation;
@@ -89,7 +89,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         home_fragment = new Home_Fragment();
         setFragment(home_fragment);
 
-
+        search_btn = findViewById(R.id.btn_search);
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Home.this,search.class);
+                startActivity(intent);
+            }
+        });
 
 
         home_navigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -123,9 +130,6 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
             }
         });
     }
-
-
-
 
 
 

@@ -24,7 +24,7 @@ import com.squareup.picasso.Picasso;
 public class About extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout drawerLayout;
-    Button menu;
+    Button menu,search_btn;
     ActionBarDrawerToggle drawerToggle ;
     TextView drawer_name,drawer_address;
     CircleImageView drawer_image;
@@ -64,6 +64,15 @@ public class About extends AppCompatActivity implements NavigationView.OnNavigat
         MenuItem item = navigationView.getMenu().findItem(R.id.about);
         item.setCheckable(true);
         item.setChecked(true);
+
+        search_btn = findViewById(R.id.btn_search);
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(About.this,search.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -34,7 +34,7 @@ import com.squareup.picasso.Picasso;
 
 public class profile extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
     DrawerLayout drawerLayout;
-    Button menu,btn_edit_profile,btn_addtrip,friends_btn;
+    Button menu,btn_edit_profile,btn_addtrip,friends_btn,search_btn;
     ImageButton updateprofileimage,updatecover;
     ActionBarDrawerToggle drawerToggle ;
     CircleImageView profileImage;
@@ -131,6 +131,14 @@ public class profile extends AppCompatActivity implements NavigationView.OnNavig
         friends_btn= findViewById(R.id.friends_btn);
         friends_btn.setOnClickListener(this);
 
+        search_btn = findViewById(R.id.btn_search);
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(profile.this,search.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

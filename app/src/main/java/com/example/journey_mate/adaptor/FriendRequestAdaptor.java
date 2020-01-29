@@ -23,6 +23,9 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -31,10 +34,12 @@ public class FriendRequestAdaptor extends RecyclerView.Adapter<FriendRequestAdap
     Context context;
     List<FriendRelationResponce> friendrequestlist;
     FriendRequestApi friendRequestApi = new FriendRequestApi();
+    Fragment fragment;
 
-    public FriendRequestAdaptor(Context context, List<FriendRelationResponce> friendrequestlist) {
+    public FriendRequestAdaptor(Context context, List<FriendRelationResponce> friendrequestlist,Fragment fragment) {
         this.context = context;
         this.friendrequestlist = friendrequestlist;
+        this.fragment = fragment;
     }
 
     @NonNull
@@ -72,6 +77,8 @@ public class FriendRequestAdaptor extends RecyclerView.Adapter<FriendRequestAdap
             public void onClick(View view) {
                 if(friendRequestApi.AcceptFriend(friend.get_id())) {
                     Toast.makeText(context, friend.getUser_id_1().getName() + " and " + UserApi.loginUserDetail.getName() + " are Friends", Toast.LENGTH_SHORT).show();
+                    FragmentTransaction ft = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+                    ft.detach(fragment).attach(fragment).commit();
                 }
 
 

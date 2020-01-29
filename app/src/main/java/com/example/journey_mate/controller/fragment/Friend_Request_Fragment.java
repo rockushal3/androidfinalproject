@@ -29,7 +29,7 @@ public class Friend_Request_Fragment extends Fragment {
         requestrecycle = root.findViewById(R.id.requested_recycle);
         FriendRequestApi friendRequestApi = new FriendRequestApi();
 
-        FriendRequestAdaptor adapter = new FriendRequestAdaptor(getContext(), friendRequestApi.findrequestByuserId());
+        FriendRequestAdaptor adapter = new FriendRequestAdaptor(getContext(), friendRequestApi.findrequestByuserId(),Friend_Request_Fragment.this);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         requestrecycle.setLayoutManager(layoutManager);
         requestrecycle.setAdapter(adapter);

@@ -35,10 +35,11 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         login.setOnClickListener(this);
         signup.setOnClickListener(this);
-//        if(userApi.checkLoginStatus()){
-//            Intent intent = new Intent(Login.this,Home.class);
-//            startActivity(intent);
-//        }
+        if(userApi.checkLoginStatus()){
+            Intent intent = new Intent(Login.this,Home.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -51,6 +52,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                 if(userApi.userLogin(user)){
                     intent = new Intent(Login.this,Home.class);
                     startActivity(intent);
+                    finish();
                 }
                 else{
                     Toast.makeText(Login.this,

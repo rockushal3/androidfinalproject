@@ -1,9 +1,12 @@
 package com.example.journey_mate.api;
 
+import com.example.journey_mate.model.SearchResponse;
 import com.example.journey_mate.model.Trip;
+import com.example.journey_mate.model.User;
 import com.example.journey_mate.router.TripRoute;
 
 import java.io.IOException;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -25,5 +28,21 @@ public class TripApi {
             System.out.println(e);
         }
         return trip_Added;
+    }
+
+    public List<SearchResponse> searchTrip(String location){
+        List<SearchResponse> searchResponses=null;
+        Call<List<SearchResponse>> searchcall = tripRoute.search(location);
+        Strict.StrictMode();
+        try {
+            Response<List<SearchResponse>> checkresponse = searchcall.execute();
+            if(checkresponse.isSuccessful()){
+               searchResponses=checkresponse.body();
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return searchResponses;
     }
 }
