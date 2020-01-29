@@ -1,5 +1,8 @@
 package com.example.journey_mate.api;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import com.example.journey_mate.model.User;
 import com.example.journey_mate.router.UserRoute;
 
@@ -8,6 +11,8 @@ import java.io.IOException;
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Response;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class UserApi {
     UserRoute userRoute = Retro.getInstance()
@@ -26,7 +31,7 @@ public class UserApi {
                 isloggedIn = true;
                 Retro.token += loginResponse.body().getToken();
                 loginUserDetail = loginResponse.body();
-                System.out.println(loginUserDetail.get_id()+"sd  " + loginUserDetail.getAddress() + "sda");
+
             }
         } catch (IOException e) {
             System.out.println(e);
@@ -52,11 +57,12 @@ public class UserApi {
 
     // check login status
     public boolean checkLoginStatus(){
-        Call<Void> userCall = userRoute.checkLogin(Retro.token);
+        Call<User> userCall = userRoute.checkLogin(Retro.token);
         Strict.StrictMode();
         try {
-            Response<Void> loginResponse = userCall.execute();
+            Response<User> loginResponse = userCall.execute();
             if(loginResponse.isSuccessful()){
+                loginUserDetail = loginResponse.body();
                 isAlreadyLogin = true;
             }
         } catch (IOException e) {

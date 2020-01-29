@@ -83,4 +83,19 @@ public class FriendRequestApi {
         }
         return  requestlist;
     }
+
+    public Boolean deletePost(String Id) {
+        Boolean checkdelete = false;
+        Call<Void> postCall = postRoute.deletePost(Id);
+        Strict.StrictMode();
+        try {
+            Response<Void> postResponse = postCall.execute();
+            if(postResponse.isSuccessful()){
+                checkdelete=true;
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return checkdelete;
+    }
 }

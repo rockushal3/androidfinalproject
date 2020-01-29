@@ -8,6 +8,7 @@ import java.util.List;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -24,6 +25,9 @@ public interface PostRoute {
 
     @GET("findpostByUserId/{id}")
     Call<List<PostResponce>> findPostByUserId(@Path("id") String id);
+
+    @DELETE("deletepost/{id}")
+    Call<Void> deletePost(@Path("id") String id);
 
 
 }

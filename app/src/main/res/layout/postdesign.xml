@@ -52,8 +52,10 @@
         android:layout_alignParentRight="true"
         style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:background="@drawable/toggel_icon"
+        android:id="@+id/option_menu"
         android:backgroundTint="#000000"
         android:layout_marginTop="10dp"
+        android:visibility="gone"
         />
 
     <TextView

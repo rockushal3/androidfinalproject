@@ -22,7 +22,7 @@ public interface UserRoute {
     Call<Void> userRegister(@Body User user);
 
     @GET("checkLogin")
-    Call<Void> checkLogin(@Header("Authorization") String auth);
+    Call<User> checkLogin(@Header("Authorization") String auth);
 
     @GET("getuserbyemail/{email}")
     Call<User> checkEmail(@Path("email") String email);

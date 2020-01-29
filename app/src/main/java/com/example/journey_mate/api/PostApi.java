@@ -21,16 +21,17 @@ public class PostApi {
             .create(PostRoute.class);
     //variable to check the function
     boolean postcreate = false;
-    public boolean CreatePostByUser(MultipartBody.Part image, String caption){
+
+    public boolean CreatePostByUser(MultipartBody.Part image, String caption) {
         System.out.println(UserApi.loginUserDetail.get_id());
         RequestBody postcaption = RequestBody.create(MediaType.parse("text/plain"), caption);
         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), UserApi.loginUserDetail.get_id());
 
-        Call<Void> postCall = postRoute.createPost(image,postcaption,user_id );
+        Call<Void> postCall = postRoute.createPost(image, postcaption, user_id);
         Strict.StrictMode();
         try {
             Response<Void> postResponse = postCall.execute();
-            if(postResponse.isSuccessful()){
+            if (postResponse.isSuccessful()) {
                 postcreate = true;
             }
         } catch (IOException e) {
@@ -39,32 +40,47 @@ public class PostApi {
         return postcreate;
     }
 
-    public List<PostResponce> findpost(){
+    public List<PostResponce> findpost() {
         List<PostResponce> postlist = null;
         Call<List<PostResponce>> postCall = postRoute.findPost();
         Strict.StrictMode();
         try {
             Response<List<PostResponce>> postResponse = postCall.execute();
-            postlist=postResponse.body();
+            postlist = postResponse.body();
 
 
         } catch (IOException e) {
             System.out.println(e);
         }
-        return  postlist;
+        return postlist;
     }
 
-    public List<PostResponce> findpostByuserId(String Id){
+    public List<PostResponce> findpostByuserId(String Id) {
         List<PostResponce> postlist = null;
         Call<List<PostResponce>> postCall = postRoute.findPostByUserId(Id);
         Strict.StrictMode();
         try {
             Response<List<PostResponce>> postResponse = postCall.execute();
-            postlist=postResponse.body();
+            postlist = postResponse.body();
         } catch (IOException e) {
             System.out.println(e);
         }
-        return  postlist;
+        return postlist;
+    }
+
+    public Boolean deletePost(String Id) {
+        Boolean checkdelete = false;
+        Call<Void> postCall = postRoute.deletePost(Id);
+        Strict.StrictMode();
+        try {
+            Response<Void> postResponse = postCall.execute();
+            if(postResponse.isSuccessful()){
+                checkdelete=true;
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return checkdelete;
     }
 
 }

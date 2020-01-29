@@ -54,9 +54,7 @@ public class PostAddFragment extends DialogFragment implements View.OnClickListe
         post_desc=view.findViewById(R.id.post_desc);
         chooseimage.setOnClickListener(this);
         uploadimage.setOnClickListener(this);
-
         builder.setView(view);
-
         return builder.create();
     }
     @Override
