@@ -39,7 +39,7 @@ import com.squareup.picasso.Picasso;
 public class UserProfile extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
-    Button menu, sendrequest, confirm_button, Friendsbtn, search_btn, delete_request;
+    Button menu, sendrequest, confirm_button, Friendsbtn, search_btn, delete_request,cancel_request,btn_viewtrip;
     CircleImageView profileImage;
     ImageView coverimage;
     ActionBarDrawerToggle drawerToggle;
@@ -81,6 +81,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         menu.setOnClickListener(this);
 
         //For User Relation Status
+        btn_viewtrip=findViewById(R.id.btn_viewtrip);
+        cancel_request= findViewById(R.id.cancel_request);
         delete_request = findViewById(R.id.delete_request);
         Friendsbtn = findViewById(R.id.Friendsbtn);
         confirm_button = findViewById(R.id.confirm_button);
@@ -98,6 +100,8 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         } else {
             System.out.println(friendRelationResponce.getStatus());
             if (friendRelationResponce.getStatus().equals("Friends")) {
+                FriendsofUser.setVisibility(View.VISIBLE);
+
                 //Post Adaptor data code
                 postview = findViewById(R.id.post_list_profile);
                 PostApi postApi = new PostApi();
@@ -106,8 +110,10 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 postview.setLayoutManager(layoutManager);
                 postview.setAdapter(adapter);
                 Friendsbtn.setOnClickListener(this);
+                btn_viewtrip.setOnClickListener(this);
             } else if (friendRelationResponce.getStatus().equals("Requested") && friendRelationResponce.getUser_id_1().get_id().equals(UserApi.loginUserDetail.get_id())) {
                 sendFriendRequest.setVisibility(View.VISIBLE);
+                cancel_request.setOnClickListener(this);
             } else if (friendRelationResponce.getStatus().equals("Requested") && friendRelationResponce.getUser_id_2().get_id().equals(UserApi.loginUserDetail.get_id())) {
                 FriendRequestofUser.setVisibility(View.VISIBLE);
                 confirm_button.setOnClickListener(this);
@@ -198,6 +204,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 intent = new Intent(UserProfile.this, UserProfile.class);
                 intent.putExtra("Id", Id);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.confirm_button:
                 if (friendRequestApi.AcceptFriend(friendRelationResponce.get_id())) {
@@ -221,6 +228,20 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                     startActivity(intent);
                     finish();
                 }
+                break;
+            case R.id.cancel_request:
+                if (friendRequestApi.deletePost(friendRelationResponce.get_id())) {
+                    Toast.makeText(UserProfile.this, friendRelationResponce.getUser_id_2().getName() + " send Request Has been deleted", Toast.LENGTH_SHORT).show();
+                    intent = new Intent(UserProfile.this, UserProfile.class);
+                    intent.putExtra("Id", Id);
+                    startActivity(intent);
+                    finish();
+                }
+                break;
+            case R.id.btn_viewtrip:
+                intent = new Intent(UserProfile.this, ListTri.class);
+                intent.putExtra("Id", Id);
+                startActivity(intent);
                 break;
 
         }

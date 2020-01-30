@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
@@ -18,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.journey_mate.R;
+import com.example.journey_mate.adaptor.TripAdaptor;
 import com.example.journey_mate.api.Retro;
 import com.example.journey_mate.api.TripApi;
 import com.example.journey_mate.api.UserApi;
@@ -35,6 +38,7 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
     FloatingActionButton addtrip;
     TextView drawer_name,drawer_address;
     CircleImageView drawer_image;
+    RecyclerView tripRecycle;
 
     TripApi tripApi = new TripApi();
     @Override
@@ -68,6 +72,12 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
             }
         });
 
+        //Get Trip
+        tripRecycle = findViewById(R.id.Trip_recycle);
+        TripAdaptor adapter = new TripAdaptor(this, tripApi.getTripByid(UserApi.loginUserDetail.get_id()));
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        tripRecycle.setLayoutManager(layoutManager);
+        tripRecycle.setAdapter(adapter);
 
 
         //hover item selected in navigation drawer

@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".controller.ListTri"></activity>
         <activity android:name=".controller.Friends" />
         <activity android:name=".controller.UserProfile" />
         <activity android:name=".controller.search" />

@@ -11,6 +11,7 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface TripRoute {
@@ -20,5 +21,8 @@ public interface TripRoute {
 
     @GET("search")
     Call<List<SearchResponse>> search(@Query("trip_name") String trip_name);
+
+    @GET("findTripByUserId/{id}")
+    Call<List<Trip>> getTripById(@Path("id") String id);
 
 }

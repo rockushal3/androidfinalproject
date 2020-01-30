@@ -18,10 +18,18 @@
             android:layout_height="wrap_content"
             android:text="Your Trip"
             android:id="@+id/trip_head"
+
             android:layout_below="@+id/toolbar"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/trip_head"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="10dp"
+            android:id="@+id/Trip_recycle"/>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

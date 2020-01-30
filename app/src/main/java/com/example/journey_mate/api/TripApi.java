@@ -45,4 +45,20 @@ public class TripApi {
         }
         return searchResponses;
     }
+
+    public List<Trip> getTripByid(String id){
+        List<Trip> triplist=null;
+        Call<List<Trip>> searchcall = tripRoute.getTripById(id);
+        Strict.StrictMode();
+        try {
+            Response<List<Trip>> checkresponse = searchcall.execute();
+            if(checkresponse.isSuccessful()){
+                triplist=checkresponse.body();
+            }
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return triplist;
+    }
 }

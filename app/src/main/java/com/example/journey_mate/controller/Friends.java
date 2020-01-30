@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.example.journey_mate.R;
 import com.example.journey_mate.adaptor.FriendListAdaptor;
+import com.example.journey_mate.adaptor.FriendUserFriendListAdaptor;
 import com.example.journey_mate.api.FriendRequestApi;
 
 public class Friends extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class Friends extends AppCompatActivity {
         recyclerView= findViewById(R.id.friendslistrecycle);
         FriendRequestApi friendRequestApi = new FriendRequestApi();
         Id = getIntent().getStringExtra("Id");
-        FriendListAdaptor adapter = new FriendListAdaptor(this, friendRequestApi.getFriendList(Id));
+        FriendUserFriendListAdaptor adapter = new FriendUserFriendListAdaptor(this, friendRequestApi.getFriendList(Id),Id);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
