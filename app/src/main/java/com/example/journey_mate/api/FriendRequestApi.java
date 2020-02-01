@@ -41,6 +41,21 @@ public class FriendRequestApi {
         return  requestlist;
     }
 
+    public List<FriendRelationResponce> getAllRelation(){
+        List<FriendRelationResponce> requestlist = null;
+        Call<List<FriendRelationResponce>> postCall = friendRequestRoute.getAllRelation(UserApi.loginUserDetail.get_id());
+        Strict.StrictMode();
+        try {
+            Response<List<FriendRelationResponce>> friendresponse = postCall.execute();
+
+            requestlist=friendresponse.body();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return  requestlist;
+    }
+
+
     public Boolean AcceptFriend(String id){
         Call<Void> postCall = friendRequestRoute.acceptFriend(id);
         Strict.StrictMode();
@@ -98,4 +113,6 @@ public class FriendRequestApi {
         }
         return checkdelete;
     }
+
+
 }

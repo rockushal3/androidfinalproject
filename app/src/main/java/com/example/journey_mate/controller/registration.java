@@ -197,7 +197,7 @@ public class registration extends AppCompatActivity implements View.OnClickListe
                 if (userApi.userRegistration(usr)) {
                     User user = new User(uemail,upassword);
 
-                    if(userApi.userLogin(user)){
+                    if(userApi.userLogin(user,registration.this)){
                         intent = new Intent(registration.this,Home.class);
                         startActivity(intent);
                         finish();

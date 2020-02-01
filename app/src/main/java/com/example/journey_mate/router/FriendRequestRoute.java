@@ -31,4 +31,7 @@ public interface FriendRequestRoute {
     @DELETE("deleteFriend/{id}")
     Call<Void> deleteFriend(@Path("id") String id);
 
+    @GET("getallrelation/{id}")
+    Call<List<FriendRelationResponce>> getAllRelation(@Path("id") String id);
+
 }

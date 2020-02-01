@@ -1,5 +1,6 @@
 package com.example.journey_mate.api;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
@@ -22,7 +23,7 @@ public class UserApi {
     public static User loginUserDetail=null;
 
     //for login function with api data
-    public boolean userLogin(User apiUser){
+    public boolean userLogin(User apiUser, Context context){
         Call<User> userCall = userRoute.userLogin(apiUser);
         Strict.StrictMode();
         try {
@@ -31,6 +32,10 @@ public class UserApi {
                 isloggedIn = true;
                 Retro.token += loginResponse.body().getToken();
                 loginUserDetail = loginResponse.body();
+                SharedPreferences sharedPreferences = context.getSharedPreferences("User",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Token",Retro.token);
+                editor.commit();
 
             }
         } catch (IOException e) {
@@ -56,8 +61,8 @@ public class UserApi {
     }
 
     // check login status
-    public boolean checkLoginStatus(){
-        Call<User> userCall = userRoute.checkLogin(Retro.token);
+    public boolean checkLoginStatus(String token){
+        Call<User> userCall = userRoute.checkLogin(token);
         Strict.StrictMode();
         try {
             Response<User> loginResponse = userCall.execute();

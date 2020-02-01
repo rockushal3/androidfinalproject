@@ -36,7 +36,7 @@ public class Friend_Fragment extends Fragment {
         friendrecycle= root.findViewById(R.id.recycle_friend);
         FriendRequestApi friendRequestApi = new FriendRequestApi();
 
-        FriendListAdaptor adapter = new FriendListAdaptor(getContext(), friendRequestApi.getFriendList(UserApi.loginUserDetail.get_id()));
+        FriendListAdaptor adapter = new FriendListAdaptor(getContext(), friendRequestApi.getFriendList(UserApi.loginUserDetail.get_id() ));
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         friendrecycle.setLayoutManager(layoutManager);
         friendrecycle.setAdapter(adapter);
