@@ -22,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:hint="Trip Name"
+        android:hint="Trip Location"
         />
     <EditText
         android:id="@+id/trip_desc"
@@ -31,14 +31,20 @@
         android:layout_margin="10dp"
         android:hint="Description"
         />
-
-    <EditText
-        android:id="@+id/trip_date"
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:hint="Date"
+        android:text="Select your trip date"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
         />
+    <DatePicker
+        android:id="@+id/tripdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="spinner"
+        android:calendarViewShown="false"
+        android:layout_gravity="center_horizontal"/>
 
     <Button
         android:id="@+id/btn_addtotrip"

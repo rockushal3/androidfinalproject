@@ -19,9 +19,10 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/cove"
             android:layout_gravity="center"
-            android:layout_marginBottom="90dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="50dp"
             />
         <TextView
             android:layout_width="match_parent"
@@ -352,12 +353,23 @@
             android:background="@drawable/bluebtn"
             style="@style/button"
             android:textAllCaps="false"/>
-
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnTakeSignup"
+            android:src="@drawable/privacy"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentLeft="true"
+            android:layout_above="@+id/privacy"
+            />
 
         <TextView
             android:layout_alignParentBottom="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:id="@+id/privacy"
             android:layout_gravity="center"
             android:padding="10dp"
             android:textAlignment="center"

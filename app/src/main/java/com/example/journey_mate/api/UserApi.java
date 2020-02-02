@@ -69,6 +69,7 @@ public class UserApi {
             if(loginResponse.isSuccessful()){
                 loginUserDetail = loginResponse.body();
                 isAlreadyLogin = true;
+                Retro.token = token;
             }
         } catch (IOException e) {
             System.out.println(e);

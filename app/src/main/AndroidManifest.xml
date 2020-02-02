@@ -16,7 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".controller.ListTri"></activity>
+        <activity android:name=".controller.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".controller.ListTri" />
         <activity android:name=".controller.Friends" />
         <activity android:name=".controller.UserProfile" />
         <activity android:name=".controller.search" />
@@ -26,11 +33,7 @@
         <activity android:name=".controller.profile" />
         <activity android:name=".controller.Home" />
         <activity android:name=".controller.Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".controller.registration" />
     </application>

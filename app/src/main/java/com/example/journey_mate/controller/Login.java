@@ -36,13 +36,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
         login.setOnClickListener(this);
         signup.setOnClickListener(this);
-        SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
-        String token =  sharedPreferences.getString("Token", "");
-        if(userApi.checkLoginStatus(token)){
-            Intent intent = new Intent(Login.this,Home.class);
-            startActivity(intent);
-            finish();
-        }
+
     }
 
     @Override
