@@ -136,6 +136,10 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
                 intent.putExtra("Id", UserApi.loginUserDetail.get_id());
                 startActivity(intent);
                 break;
+            case R.id.setting:
+                intent = new Intent(this,Settings.class);
+                startActivity(intent);
+                break;
         }
         CloseDrawer();
         return true;

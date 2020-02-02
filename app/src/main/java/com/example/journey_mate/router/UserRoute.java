@@ -30,6 +30,7 @@ public interface UserRoute {
     @PUT("updateUser/{id}")
     Call<Void> updateProfile(@Path("id") String id,
                               @Body User user);
+
     @GET("findUserById/{id}")
     Call<User> finduserbyid(@Path("id") String id);
 

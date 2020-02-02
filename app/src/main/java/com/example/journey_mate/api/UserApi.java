@@ -120,7 +120,6 @@ public class UserApi {
             if(checkresponse.isSuccessful()){
                 checkprofile=true;
                 loginUserDetail = getuserbyid(loginUserDetail.get_id());
-                System.out.println(loginUserDetail.get_id());
             }
             else {
                 checkprofile=false;
@@ -129,6 +128,27 @@ public class UserApi {
             System.out.println(e);
         }
         return checkprofile;
+    }
+
+    //update profile detail
+    public boolean updatepassword(User User){
+        Call<Void> userCall = userRoute.updateProfile(loginUserDetail.get_id(),User);
+        boolean checkpassword =false;
+        Strict.StrictMode();
+        try {
+            Response<Void> checkresponse = userCall.execute();
+            System.out.println(checkresponse.isSuccessful());
+            if(checkresponse.isSuccessful()){
+                checkpassword=true;
+                loginUserDetail = getuserbyid(loginUserDetail.get_id());
+            }
+            else {
+                checkpassword=false;
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return checkpassword;
     }
 
     //update cover picture

@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".controller.Settings"></activity>
         <activity android:name=".controller.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,9 +33,7 @@
         <activity android:name=".controller.MyTrip" />
         <activity android:name=".controller.profile" />
         <activity android:name=".controller.Home" />
-        <activity android:name=".controller.Login">
-
-        </activity>
+        <activity android:name=".controller.Login"></activity>
         <activity android:name=".controller.registration" />
     </application>
 

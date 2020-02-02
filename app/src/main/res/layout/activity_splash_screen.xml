@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="281dp"
-        android:layout_height="290dp"
+        android:layout_width="218dp"
+        android:layout_height="237dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="160dp"
         android:transitionName="icon"
@@ -21,13 +21,13 @@
         app:srcCompat="@drawable/google_travel_logo" />
 
 
-
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="339dp"
-        android:layout_height="201dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="302dp"
+        android:layout_height="177dp"
         android:transitionName="logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo" />
@@ -36,8 +36,8 @@
         android:id="@+id/imageView6"
         android:layout_width="385dp"
         android:layout_height="245dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.384"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4"
         app:srcCompat="@drawable/cove" />
