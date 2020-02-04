@@ -9,6 +9,7 @@
         <item name="android:statusBarColor">#ffffff</item>
         <item name="android:windowLightStatusBar"> true</item>
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:textViewStyle">@style/fontss</item>
     </style>
     <style name="textViewStyle">
         <item name="android:textSize">18sp</item>
@@ -30,5 +31,8 @@
         <item name="android:layoutDirection">rtl</item>
         <item name="android:textAlignment">textStart</item>
         <item name="android:layout_marginBottom">5dp</item>
+    </style>
+    <style name="fontss" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/roboto</item>
     </style>
 </resources>

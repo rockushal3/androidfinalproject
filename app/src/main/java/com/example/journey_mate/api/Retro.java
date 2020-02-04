@@ -11,7 +11,7 @@ public class Retro {
             = "http://10.0.2.2:3030/image/";
     public static final String POST_IMG_URL
             = "http://10.0.2.2:3030/image/post/";
-    public static String token = "Bearer ";
+    public static String token = null;
 
     public static Retrofit getInstance(){
         Retrofit retrofit = new Retrofit.Builder()

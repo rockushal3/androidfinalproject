@@ -30,7 +30,7 @@ public class UserApi {
             Response<User> loginResponse = userCall.execute();
             if(loginResponse.isSuccessful()){
                 isloggedIn = true;
-                Retro.token += loginResponse.body().getToken();
+                Retro.token ="Bearer " + loginResponse.body().getToken();
                 loginUserDetail = loginResponse.body();
                 SharedPreferences sharedPreferences = context.getSharedPreferences("User",MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -112,7 +112,7 @@ public class UserApi {
 
     //update profile detail
     public boolean updateProfile(User user){
-        Call<Void> userCall = userRoute.updateProfile(loginUserDetail.get_id(),user);
+        Call<Void> userCall = userRoute.updateProfile(loginUserDetail.get_id(),user,Retro.token);
         Strict.StrictMode();
         try {
             Response<Void> checkresponse = userCall.execute();
@@ -132,7 +132,7 @@ public class UserApi {
 
     //update profile detail
     public boolean updatepassword(User User){
-        Call<Void> userCall = userRoute.updateProfile(loginUserDetail.get_id(),User);
+        Call<Void> userCall = userRoute.updateProfile(loginUserDetail.get_id(),User,Retro.token);
         boolean checkpassword =false;
         Strict.StrictMode();
         try {
@@ -153,7 +153,7 @@ public class UserApi {
 
     //update cover picture
     public boolean updateCoverPic(MultipartBody.Part image){
-        Call<Void> userCall = userRoute.updatecover(loginUserDetail.get_id(),image);
+        Call<Void> userCall = userRoute.updatecover(loginUserDetail.get_id(),image,Retro.token);
         Strict.StrictMode();
         try {
             Response<Void> checkresponse = userCall.execute();
@@ -170,7 +170,7 @@ public class UserApi {
 
     //update profile picture
     public boolean updateProfilePic(MultipartBody.Part image){
-        Call<Void> userCall = userRoute.updateprofilepic(loginUserDetail.get_id(),image);
+        Call<Void> userCall = userRoute.updateprofilepic(loginUserDetail.get_id(),image,Retro.token);
         Strict.StrictMode();
         try {
             Response<Void> checkresponse = userCall.execute();

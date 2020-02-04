@@ -23,6 +23,6 @@ public interface TripRoute {
     Call<List<SearchResponse>> search(@Query("trip_name") String trip_name);
 
     @GET("findTripByUserId/{id}")
-    Call<List<Trip>> getTripById(@Path("id") String id);
+    Call<List<Trip>> getTripById(@Path("id") String id,@Header("Authorization") String auth);
 
 }

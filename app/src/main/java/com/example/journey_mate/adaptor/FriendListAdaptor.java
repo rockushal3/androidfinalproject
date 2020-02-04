@@ -32,7 +32,6 @@ import static java.security.AccessController.getContext;
 public class FriendListAdaptor extends RecyclerView.Adapter<FriendListAdaptor.FriendListHolder>{
     Context context;
     List<FriendRelationResponce> friendlist;
-    FriendRequestApi friendRequestApi = new FriendRequestApi();
 
     public FriendListAdaptor(Context context, List<FriendRelationResponce> friendlist) {
         this.context = context;
@@ -67,7 +66,6 @@ public class FriendListAdaptor extends RecyclerView.Adapter<FriendListAdaptor.Fr
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
                             pairs);
                     context.startActivity(intent,options.toBundle());
-
                 }
             });
         }
@@ -88,7 +86,6 @@ public class FriendListAdaptor extends RecyclerView.Adapter<FriendListAdaptor.Fr
                     ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
                             pairs);
                     context.startActivity(intent,options.toBundle());
-
                 }
             });
         }

@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +21,7 @@ import android.widget.TextView;
 import com.example.journey_mate.R;
 import com.example.journey_mate.api.Retro;
 import com.example.journey_mate.api.UserApi;
+import com.example.journey_mate.controller.fragment.ForMap;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
@@ -28,6 +32,7 @@ public class About extends AppCompatActivity implements NavigationView.OnNavigat
     ActionBarDrawerToggle drawerToggle ;
     TextView drawer_name,drawer_address;
     CircleImageView drawer_image;
+    ForMap forMap = new ForMap();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +78,7 @@ public class About extends AppCompatActivity implements NavigationView.OnNavigat
                 startActivity(intent);
             }
         });
+        setFragment(forMap);
     }
 
     @Override
@@ -88,8 +94,14 @@ public class About extends AppCompatActivity implements NavigationView.OnNavigat
                 startActivity(intent);
                 break;
             case R.id.logout_nav:
+                SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Token","");
+                editor.commit();
+                Retro.token ="";
                 intent = new Intent(this,Login.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.trip:
                 intent = new Intent(this,MyTrip.class);
@@ -120,5 +132,11 @@ public class About extends AppCompatActivity implements NavigationView.OnNavigat
 
     private void openDrawer() {
         drawerLayout.openDrawer(GravityCompat.END);
+    }
+
+    public void setFragment(Fragment fragment){
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.formap, fragment);
+        fragmentTransaction.commit();
     }
 }

@@ -13,6 +13,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import android.app.Activity;
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.MenuItem;
@@ -169,8 +170,14 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 startActivity(intent);
                 break;
             case R.id.logout_nav:
-                intent = new Intent(this, Login.class);
+                SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Token","");
+                editor.commit();
+                Retro.token ="";
+                intent = new Intent(this,Login.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.trip:
                 intent = new Intent(this, MyTrip.class);

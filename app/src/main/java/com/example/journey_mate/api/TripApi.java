@@ -48,7 +48,7 @@ public class TripApi {
 
     public List<Trip> getTripByid(String id){
         List<Trip> triplist=null;
-        Call<List<Trip>> searchcall = tripRoute.getTripById(id);
+        Call<List<Trip>> searchcall = tripRoute.getTripById(id,Retro.token);
         Strict.StrictMode();
         try {
             Response<List<Trip>> checkresponse = searchcall.execute();

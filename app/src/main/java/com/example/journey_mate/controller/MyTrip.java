@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -119,8 +120,14 @@ public class MyTrip extends AppCompatActivity implements NavigationView.OnNaviga
                 startActivity(intent);
                 break;
             case R.id.logout_nav:
+                SharedPreferences sharedPreferences = getSharedPreferences("User",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Token","");
+                editor.commit();
+                Retro.token ="";
                 intent = new Intent(this,Login.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.trip:
                 intent = new Intent(this,MyTrip.class);

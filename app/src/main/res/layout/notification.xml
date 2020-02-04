@@ -19,7 +19,7 @@ xmlns:android="http://schemas.android.com/apk/res/android" >
     android:layout_marginLeft="20dp"
     android:textColor="@color/black"
     android:layout_toRightOf="@id/profile_image"
-    android:layout_toLeftOf="@+id/option"
+    android:layout_alignParentRight="true"
     android:layout_marginTop="20dp"
     />
 <TextView
@@ -32,15 +32,5 @@ xmlns:android="http://schemas.android.com/apk/res/android" >
     android:layout_marginLeft="20dp"
     android:text="3 hour ago"
     />
-<Button
-    android:id="@+id/option"
-    android:layout_width="40dp"
-    style="@style/Widget.AppCompat.Button.Borderless"
-    android:layout_height="40dp"
-    android:layout_alignParentRight="true"
-    android:layout_marginTop="30dp"
-    android:layout_marginLeft="20dp"
-    android:background="@drawable/toggel_icon"
-    android:backgroundTint="@color/black"
-    />
+
 </RelativeLayout>

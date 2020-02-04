@@ -27,7 +27,7 @@ public class PostApi {
         RequestBody postcaption = RequestBody.create(MediaType.parse("text/plain"), caption);
         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), UserApi.loginUserDetail.get_id());
 
-        Call<Void> postCall = postRoute.createPost(image, postcaption, user_id);
+        Call<Void> postCall = postRoute.createPost(image, postcaption, user_id,Retro.token);
         Strict.StrictMode();
         try {
             Response<Void> postResponse = postCall.execute();
@@ -42,7 +42,7 @@ public class PostApi {
 
     public List<PostResponce> findpost() {
         List<PostResponce> postlist = null;
-        Call<List<PostResponce>> postCall = postRoute.findPost();
+        Call<List<PostResponce>> postCall = postRoute.findPost(Retro.token);
         Strict.StrictMode();
         try {
             Response<List<PostResponce>> postResponse = postCall.execute();
@@ -57,7 +57,7 @@ public class PostApi {
 
     public List<PostResponce> findpostByuserId(String Id) {
         List<PostResponce> postlist = null;
-        Call<List<PostResponce>> postCall = postRoute.findPostByUserId(Id);
+        Call<List<PostResponce>> postCall = postRoute.findPostByUserId(Id,Retro.token);
         Strict.StrictMode();
         try {
             Response<List<PostResponce>> postResponse = postCall.execute();
