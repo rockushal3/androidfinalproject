@@ -19,39 +19,39 @@ import com.example.journey_mate.api.UserApi;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private static int Splash_time_out =3000;
-    private ImageView imageView6,imageView4;
+    private static int Splash_time_out = 3000;
+    private ImageView imageView6, imageView4;
     UserApi userApi = new UserApi();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        imageView6=findViewById(R.id.imageView6);
-        imageView4=findViewById(R.id.imageView4);
-        imageView4.setAnimation(AnimationUtils.loadAnimation(this,R.anim.rotate));
+        imageView6 = findViewById(R.id.imageView6);
+        imageView4 = findViewById(R.id.imageView4);
+        imageView4.setAnimation(AnimationUtils.loadAnimation(this, R.anim.rotate));
         imageView6.setAnimation(AnimationUtils.loadAnimation(this, R.anim.lefttoright));
 
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                        SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
-        String token =  sharedPreferences.getString("Token", "");
-                System.out.println(token);
-        if(userApi.checkLoginStatus(token)){
-            Intent intent = new Intent(SplashScreen.this,Home.class);
-            startActivity(intent);
-            finish();
-        }
-        else {
-            Intent intent = new Intent(SplashScreen.this, Login.class);
-            Animatoo.animateZoom(SplashScreen.this);
-            startActivity(intent);
-            finish();
-        }
+                SharedPreferences sharedPreferences = getSharedPreferences("User", MODE_PRIVATE);
+                String token = sharedPreferences.getString("Token", "");
+                if (userApi.checkLoginStatus(token)) {
+                    Intent intent = new Intent(SplashScreen.this, Home.class);
+                    startActivity(intent);
+                    finish();
+                } else {
+                    Intent intent = new Intent(SplashScreen.this, Login.class);
+                    Animatoo.animateZoom(SplashScreen.this);
+                    startActivity(intent);
+                    finish();
+                }
             }
-        },Splash_time_out);
+        }, Splash_time_out);
+
 
 
     }

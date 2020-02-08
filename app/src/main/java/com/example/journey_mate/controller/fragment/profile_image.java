@@ -33,7 +33,7 @@ import com.example.journey_mate.api.UserApi;
 
 import java.io.File;
 
-public class profile_image extends DialogFragment implements View.OnClickListener {
+public class    profile_image extends DialogFragment implements View.OnClickListener {
 
     Uri uri;
     ImageView choosenimage;

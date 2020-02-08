@@ -15,6 +15,7 @@ import com.example.journey_mate.api.FriendRequestApi;
 import com.example.journey_mate.api.Retro;
 import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.controller.UserProfile;
+import com.example.journey_mate.controller.profile;
 import com.example.journey_mate.model.FriendRelationResponce;
 import com.squareup.picasso.Picasso;
 
@@ -56,14 +57,25 @@ public class FriendUserFriendListAdaptor extends RecyclerView.Adapter<FriendUser
             holder.username.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, UserProfile.class);
-                    Pair[] pairs = new Pair[2];
-                    pairs[0] = new Pair<View,String>(holder.profilepic,"profileImage");
-                    pairs[1] = new Pair<View,String>(holder.username,"profileName");
-                    intent.putExtra("Id", friend.getUser_id_2().get_id());
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
-                            pairs);
-                    context.startActivity(intent,options.toBundle());
+                    if (friend.getUser_id_2().get_id().equals(UserApi.loginUserDetail.get_id())) {
+                        Intent intent = new Intent(context, profile.class);
+                        Pair[] pairs = new Pair[2];
+                        pairs[0] = new Pair<View, String>(holder.profilepic, "profileImage");
+                        pairs[1] = new Pair<View, String>(holder.username, "profileName");
+                        intent.putExtra("Id", friend.getUser_id_2().get_id());
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
+                                pairs);
+                        context.startActivity(intent, options.toBundle());
+                    } else {
+                        Intent intent = new Intent(context, UserProfile.class);
+                        Pair[] pairs = new Pair[2];
+                        pairs[0] = new Pair<View, String>(holder.profilepic, "profileImage");
+                        pairs[1] = new Pair<View, String>(holder.username, "profileName");
+                        intent.putExtra("Id", friend.getUser_id_2().get_id());
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
+                                pairs);
+                        context.startActivity(intent, options.toBundle());
+                    }
 
                 }
             });
@@ -77,14 +89,25 @@ public class FriendUserFriendListAdaptor extends RecyclerView.Adapter<FriendUser
             holder.username.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(context, UserProfile.class);
-                    Pair[] pairs = new Pair[2];
-                    pairs[0] = new Pair<View,String>(holder.profilepic,"profileImage");
-                    pairs[1] = new Pair<View,String>(holder.username,"profileName");
-                    intent.putExtra("Id", friend.getUser_id_1().get_id());
-                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
-                            pairs);
-                    context.startActivity(intent,options.toBundle());
+                    if (friend.getUser_id_1().get_id().equals(UserApi.loginUserDetail.get_id())) {
+                        Intent intent = new Intent(context, profile.class);
+                        Pair[] pairs = new Pair[2];
+                        pairs[0] = new Pair<View, String>(holder.profilepic, "profileImage");
+                        pairs[1] = new Pair<View, String>(holder.username, "profileName");
+                        intent.putExtra("Id", friend.getUser_id_1().get_id());
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
+                                pairs);
+                        context.startActivity(intent, options.toBundle());
+                    } else {
+                        Intent intent = new Intent(context, UserProfile.class);
+                        Pair[] pairs = new Pair[2];
+                        pairs[0] = new Pair<View, String>(holder.profilepic, "profileImage");
+                        pairs[1] = new Pair<View, String>(holder.username, "profileName");
+                        intent.putExtra("Id", friend.getUser_id_1().get_id());
+                        ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation((Activity) context,
+                                pairs);
+                        context.startActivity(intent, options.toBundle());
+                    }
 
                 }
             });
