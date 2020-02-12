@@ -28,7 +28,8 @@
             android:layout_marginRight="20dp"
             />
     </RelativeLayout>
-    <FrameLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="10dp"
         android:id="@+id/serchresult"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

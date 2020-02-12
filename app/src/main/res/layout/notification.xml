@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="match_parent"
+android:layout_height="wrap_content"
+xmlns:android="http://schemas.android.com/apk/res/android" >
+<de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/profile_image"
+    android:layout_width="65dp"
+    android:layout_height="65dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginRight="10dp"
+    android:src="@drawable/profile" />
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/nofication"
+    android:text="Kushal Shrestha accept you as friend"
+    android:textSize="14dp"
+    android:layout_marginLeft="20dp"
+    android:textColor="@color/black"
+    android:layout_toRightOf="@id/profile_image"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="20dp"
+    />
+<TextView
+
+    android:layout_width="wrap_content"
+    android:layout_height="40dp"
+    android:layout_toRightOf="@id/profile_image"
+    android:layout_below="@id/nofication"
+    android:layout_marginTop="10dp"
+    android:layout_marginLeft="20dp"
+    android:text="3 hour ago"
+    />
+
+</RelativeLayout>

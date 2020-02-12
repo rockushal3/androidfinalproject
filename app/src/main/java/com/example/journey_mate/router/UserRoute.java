@@ -22,22 +22,23 @@ public interface UserRoute {
     Call<Void> userRegister(@Body User user);
 
     @GET("checkLogin")
-    Call<Void> checkLogin(@Header("Authorization") String auth);
+    Call<User> checkLogin(@Header("Authorization") String auth);
 
     @GET("getuserbyemail/{email}")
     Call<User> checkEmail(@Path("email") String email);
 
     @PUT("updateUser/{id}")
     Call<Void> updateProfile(@Path("id") String id,
-                              @Body User user);
+                              @Body User user,@Header("Authorization") String auth);
+
     @GET("findUserById/{id}")
     Call<User> finduserbyid(@Path("id") String id);
 
     @Multipart //for image
     @PUT("updateCover/{id}")
-    Call<Void> updatecover(@Path("id") String id,@Part MultipartBody.Part img); //image file data type MultipartBody
+    Call<Void> updatecover(@Path("id") String id,@Part MultipartBody.Part img,@Header("Authorization") String auth); //image file data type MultipartBody
 
     @Multipart //for image
     @PUT("updateProfile/{id}")
-    Call<Void> updateprofilepic(@Path("id") String id,@Part MultipartBody.Part img); //image file data type MultipartBody
+    Call<Void> updateprofilepic(@Path("id") String id,@Part MultipartBody.Part img,@Header("Authorization") String auth); //image file data type MultipartBody
 }

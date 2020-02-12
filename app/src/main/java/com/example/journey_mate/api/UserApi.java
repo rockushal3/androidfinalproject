@@ -1,5 +1,9 @@
 package com.example.journey_mate.api;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import com.example.journey_mate.model.User;
 import com.example.journey_mate.router.UserRoute;
 
@@ -9,27 +13,38 @@ import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.Response;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class UserApi {
     UserRoute userRoute = Retro.getInstance()
             .create(UserRoute.class);
+    //variable to check the function
     boolean isloggedIn,isAlreadyLogin,userregister,checkemailreg,checkprofile,updatecoverimage = false;
     public static User loginUserDetail=null;
-    public boolean userLogin(User apiUser){
+
+    //for login function with api data
+    public boolean userLogin(User apiUser, Context context){
         Call<User> userCall = userRoute.userLogin(apiUser);
         Strict.StrictMode();
         try {
             Response<User> loginResponse = userCall.execute();
             if(loginResponse.isSuccessful()){
                 isloggedIn = true;
-                Retro.token += loginResponse.body().getToken();
+                Retro.token ="Bearer " + loginResponse.body().getToken();
                 loginUserDetail = loginResponse.body();
-                System.out.println(loginUserDetail.get_id()+"sd  " + loginUserDetail.getAddress() + "sda");
+                SharedPreferences sharedPreferences = context.getSharedPreferences("User",MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Token",Retro.token);
+                editor.commit();
+
             }
         } catch (IOException e) {
             System.out.println(e);
         }
         return isloggedIn;
     }
+
+    //for registration function add data to api
 
     public boolean userRegistration(User apiUser){
         Call<Void> userCall = userRoute.userRegister(apiUser);
@@ -45,13 +60,16 @@ public class UserApi {
         return userregister;
     }
 
-    public boolean checkLoginStatus(){
-        Call<Void> userCall = userRoute.checkLogin(Retro.token);
+    // check login status
+    public boolean checkLoginStatus(String token){
+        Call<User> userCall = userRoute.checkLogin(token);
         Strict.StrictMode();
         try {
-            Response<Void> loginResponse = userCall.execute();
+            Response<User> loginResponse = userCall.execute();
             if(loginResponse.isSuccessful()){
+                loginUserDetail = loginResponse.body();
                 isAlreadyLogin = true;
+                Retro.token = token;
             }
         } catch (IOException e) {
             System.out.println(e);
@@ -59,6 +77,7 @@ public class UserApi {
         return isAlreadyLogin;
     }
 
+    //check email validation
     public boolean checkemail(String email){
         Call<User> userCall = userRoute.checkEmail(email);
         Strict.StrictMode();
@@ -74,6 +93,7 @@ public class UserApi {
         return checkemailreg;
     }
 
+    //get data of user from api with id
     public User getuserbyid(String id){
         Call<User> userCall = userRoute.finduserbyid(id);
         User userdetail = null;
@@ -89,8 +109,10 @@ public class UserApi {
         }
         return userdetail;
     }
+
+    //update profile detail
     public boolean updateProfile(User user){
-        Call<Void> userCall = userRoute.updateProfile(loginUserDetail.get_id(),user);
+        Call<Void> userCall = userRoute.updateProfile(loginUserDetail.get_id(),user,Retro.token);
         Strict.StrictMode();
         try {
             Response<Void> checkresponse = userCall.execute();
@@ -98,7 +120,6 @@ public class UserApi {
             if(checkresponse.isSuccessful()){
                 checkprofile=true;
                 loginUserDetail = getuserbyid(loginUserDetail.get_id());
-                System.out.println(loginUserDetail.get_id());
             }
             else {
                 checkprofile=false;
@@ -109,8 +130,30 @@ public class UserApi {
         return checkprofile;
     }
 
+    //update profile detail
+    public boolean updatepassword(User User){
+        Call<Void> userCall = userRoute.updateProfile(loginUserDetail.get_id(),User,Retro.token);
+        boolean checkpassword =false;
+        Strict.StrictMode();
+        try {
+            Response<Void> checkresponse = userCall.execute();
+            System.out.println(checkresponse.isSuccessful());
+            if(checkresponse.isSuccessful()){
+                checkpassword=true;
+                loginUserDetail = getuserbyid(loginUserDetail.get_id());
+            }
+            else {
+                checkpassword=false;
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return checkpassword;
+    }
+
+    //update cover picture
     public boolean updateCoverPic(MultipartBody.Part image){
-        Call<Void> userCall = userRoute.updatecover(loginUserDetail.get_id(),image);
+        Call<Void> userCall = userRoute.updatecover(loginUserDetail.get_id(),image,Retro.token);
         Strict.StrictMode();
         try {
             Response<Void> checkresponse = userCall.execute();
@@ -125,8 +168,9 @@ public class UserApi {
         return checkprofile;
     }
 
+    //update profile picture
     public boolean updateProfilePic(MultipartBody.Part image){
-        Call<Void> userCall = userRoute.updateprofilepic(loginUserDetail.get_id(),image);
+        Call<Void> userCall = userRoute.updateprofilepic(loginUserDetail.get_id(),image,Retro.token);
         Strict.StrictMode();
         try {
             Response<Void> checkresponse = userCall.execute();

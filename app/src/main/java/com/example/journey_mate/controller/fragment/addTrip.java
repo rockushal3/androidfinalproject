@@ -12,6 +12,7 @@ import androidx.fragment.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -22,10 +23,14 @@ import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.controller.MyTrip;
 import com.example.journey_mate.model.Trip;
 
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class addTrip extends DialogFragment {
-    EditText trip_name, desc,date;
+    EditText trip_name, desc;
     Button btn_addtrip;
+    DatePicker tripdate;
     TripApi tripApi = new TripApi();
 
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
@@ -37,13 +42,15 @@ public class addTrip extends DialogFragment {
         btn_addtrip = view.findViewById(R.id.btn_addtotrip);
         trip_name = view.findViewById(R.id.trip_name);
         desc = view.findViewById(R.id.trip_desc);
-        date = view.findViewById(R.id.trip_date);
-
+        tripdate=view.findViewById(R.id.tripdate);
+        tripdate.setMinDate(System.currentTimeMillis());
         //add trip function
         btn_addtrip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-        Trip trip = new Trip(UserApi.loginUserDetail.get_id(),trip_name.getText().toString(),desc.getText().toString(),date.getText().toString());
+                String tripdat = tripdate.getDayOfMonth() + "/" + (tripdate.getMonth() + 1) + "/" + tripdate.getYear();
+                System.out.println(tripdat);
+        Trip trip = new Trip(UserApi.loginUserDetail.get_id(),trip_name.getText().toString(),desc.getText().toString(),tripdat);
         if(tripApi.createTrip(trip)){
             reload();
             Toast.makeText(getContext(), "Trip has been added", Toast.LENGTH_SHORT).show();
