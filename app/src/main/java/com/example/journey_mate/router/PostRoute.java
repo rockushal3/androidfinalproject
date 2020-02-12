@@ -18,18 +18,18 @@ import retrofit2.http.Path;
 
 public interface PostRoute {
     @Multipart //for image
-    @POST("createpost")
+    @POST("post")
     Call<Void> createPost(@Part MultipartBody.Part img, @Part("caption") RequestBody caption,
                           @Part("user_id") RequestBody user_id,
                           @Header("Authorization") String auth); //image file data type MultipartBody
 
-    @GET("findpost")
+    @GET("post")
     Call<List<PostResponce>> findPost(@Header("Authorization") String auth);
 
     @GET("findpostByUserId/{id}")
     Call<List<PostResponce>> findPostByUserId(@Path("id") String id, @Header("Authorization") String auth);
 
-    @DELETE("deletepost/{id}")
+    @DELETE("post/{id}")
     Call<Void> deletePost(@Path("id") String id);
 
 

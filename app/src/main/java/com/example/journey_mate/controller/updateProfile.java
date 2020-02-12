@@ -1,8 +1,5 @@
 package com.example.journey_mate.controller;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +11,9 @@ import com.example.journey_mate.R;
 import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.model.User;
 import com.google.android.material.textfield.TextInputEditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 public class updateProfile extends AppCompatActivity {
 
@@ -62,6 +62,7 @@ public class updateProfile extends AppCompatActivity {
                 if(userApi.updateProfile(user)){
                     Intent intent = new Intent(updateProfile.this, profile.class);
                     startActivity(intent);
+                    finish();
                     Toast.makeText(updateProfile.this, "User Updated", Toast.LENGTH_SHORT).show();
                 }
                 else {
