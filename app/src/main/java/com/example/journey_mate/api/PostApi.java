@@ -23,7 +23,6 @@ public class PostApi {
     boolean postcreate = false;
 
     public boolean CreatePostByUser(MultipartBody.Part image, String caption) {
-        System.out.println(UserApi.loginUserDetail.get_id());
         RequestBody postcaption = RequestBody.create(MediaType.parse("text/plain"), caption);
         RequestBody user_id = RequestBody.create(MediaType.parse("text/plain"), UserApi.loginUserDetail.get_id());
 

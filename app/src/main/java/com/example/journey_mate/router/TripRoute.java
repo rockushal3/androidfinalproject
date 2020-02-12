@@ -16,7 +16,7 @@ import retrofit2.http.Query;
 
 public interface TripRoute {
 
-    @POST("createTrip")
+    @POST("trip")
     Call<Void> addTrip(@Header("Authorization") String auth,@Body Trip trip);
 
     @GET("search")
