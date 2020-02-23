@@ -1,21 +1,9 @@
 package com.example.journey_mate.controller;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import de.hdodenhof.circleimageview.CircleImageView;
-
-import android.app.Activity;
-import android.app.ActivityOptions;
+import android.app.Notification;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Pair;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -34,8 +22,21 @@ import com.example.journey_mate.api.UserApi;
 import com.example.journey_mate.model.FriendRelation;
 import com.example.journey_mate.model.FriendRelationResponce;
 import com.example.journey_mate.model.User;
+import com.example.journey_mate.services.NotificationChannel;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class UserProfile extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
@@ -55,6 +56,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
     RecyclerView postview;
     TextView drawer_name, drawer_address;
     CircleImageView drawer_image;
+    NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +66,9 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+        NotificationChannel createChannel = new NotificationChannel(this);
+        createChannel.NotificationChannel();
         //Drawer Menu
         drawerLayout = findViewById(R.id.drawerllayout);
         NavigationView navigationView = findViewById(R.id.navView);
@@ -211,6 +216,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 break;
             case R.id.sendrequest:
                 FriendRelation friendRelation = new FriendRelation(UserApi.loginUserDetail.get_id(), Id, "");
+                notificationchannelone("Send Request","You send request to "+userdetail.getName());
                 friendRequestApi.sendRequest(friendRelation);
                 intent = new Intent(UserProfile.this, UserProfile.class);
                 intent.putExtra("Id", Id);
@@ -221,6 +227,7 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
                 if (friendRequestApi.AcceptFriend(friendRelationResponce.get_id())) {
                     Toast.makeText(UserProfile.this, friendRelationResponce.getUser_id_1().getName() + " and " + UserApi.loginUserDetail.getName() + " are Friends", Toast.LENGTH_SHORT).show();
                     intent = new Intent(UserProfile.this, UserProfile.class);
+                    notificationchannelone("Accept Request","You accept request of "+userdetail.getName());
                     intent.putExtra("Id", Id);
                     startActivity(intent);
                     finish();
@@ -265,5 +272,15 @@ public class UserProfile extends AppCompatActivity implements View.OnClickListen
 
     private void openDrawer() {
         drawerLayout.openDrawer(GravityCompat.END);
+    }
+
+    public void notificationchannelone(String title, String text){
+        Notification notification = new NotificationCompat.Builder(this, NotificationChannel.Channel_One)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setContentTitle(title)
+                .setContentText(text)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+        notificationManagerCompat.notify(1,notification);
     }
 }
